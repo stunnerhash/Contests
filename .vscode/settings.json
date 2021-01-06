@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "list": "cpp",
+        "random": "cpp",
+        "iostream": "cpp",
+        "valarray": "cpp",
+        "cmath": "cpp"
+    }
+}
