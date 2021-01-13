@@ -5,6 +5,7 @@
         "random": "cpp",
         "iostream": "cpp",
         "valarray": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "chrono": "cpp"
     }
 }
