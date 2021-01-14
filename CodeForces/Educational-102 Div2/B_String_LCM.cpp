@@ -48,58 +48,46 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define debug(x...)
 #endif
 
+int solve(string s, string t){
+    int max=s.size();
+    while(1){
+        if (max % s.size() == 0 && max % t.size() == 0) break;
+        ++max;
+    }
+    string ab;
+    lop(i,max/s.size())   ab += s;
+    for(int i =0;i<ab.size();i += t.size()){
+        string temp = ab.substr(i,t.size());
+        if(temp != t) return -1;
+    }
+    return max/s.size();
+}
 void Solve()
 {
-  int n;
-  cin>>n;
-  vi a(n );
-  loop cin>>a[i];
-  int total =0;
-  loop total += a[i];
-  debug(total);
-  if(total%3) {
-      cout<<0<<endl;    return;
+  int x=0;
+  bool flag =0;
+  string s,t;
+  cin>>s>>t;
+  if(s.size()>t.size()) flag =1;
+  if(flag) x = solve(s,t);
+  else x = solve(t,s);
+
+  if(x == -1) cout<<"-1"<<endl;
+  else{
+    if(flag) while(x--) cout<<s;
+    else while (x--) cout<<t;
   }
-
-  // // first half 
-  // int i,temp=0,tp=0;
-  // for(i =0;i<n and temp != total/3;i++)  temp+=a[i];
-    
-  //   if(i == n) {cout<<0<<endl;   return;}
-
-  // // second half 
-  // temp =0; int cnt=0;
-  // for(;i<n and temp != total/3;i++){
-  //     if(temp == 0) {
-  //         cout<<"flcl\n";
-  //         cnt++;
-  //       }
-  //     temp+=a[i];
-  // }if(i == n) {
-  //     cout<<"flcl";
-  //     cout<<0<<endl;return;
-  // }
-
-  // // third half
-  // temp =0; int cntb = 0;
-  // for(;i<n;i++){
-  //     if(temp ==0) {
-  //       cntb++;
-  //       debug(i,temp);
-  //     }
-  //     temp+= a[i];
-  // }if(temp!=total/3){
-  //       cout<<0<<endl; return;    
-  // }
-  // debug(cnt,cntb);
-  //   cout<< cnt* cntb<<endl;
+  cout<<endl;
 }
 
 int main()
 {
  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
  srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+
  int Testcase = 1;
+ cin >> Testcase;
+
  while (Testcase--) Solve();
  return 0;
 }
