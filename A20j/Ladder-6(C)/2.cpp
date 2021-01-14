@@ -24,18 +24,19 @@ typedef vector<vi> vvi;
 void Solve()
 {
   //input
+  
   int n;cin>>n;
-  vi a(n);
+  vector<ll> a(n+1);
   loop cin>>a[i];
   
-  int sum=0;
+  ll sum=0;
   loop sum += a[i];
   
   if(sum%3) { cout<<0<<endl;  return; }
   
-  int suma =0,sumb =0,s1 =0;
+  ll suma =0,sumb =0,s1 =0;
 
-  for(int i =0; i<n-1; i++){
+  for(ll i =0; i<n-1; i++){
     s1 +=a[i];
     if(s1 == 2*sum/3) sumb +=suma;
     if(s1 == sum/3) suma++;
