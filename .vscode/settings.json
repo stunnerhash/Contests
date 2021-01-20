@@ -7,5 +7,6 @@
         "valarray": "cpp",
         "cmath": "cpp",
         "chrono": "cpp"
-    }
+    },
+    "maven.view": "flat"
 }
