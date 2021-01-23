@@ -22,13 +22,12 @@ typedef vector<pi> vpi;
 typedef vector<vi> vvi;
 
 void Solve()
-{
-  //input
+{ //input
   
   int n;cin>>n;
   vector<ll> a(n+1);
   loop cin>>a[i];
-  
+
   ll sum=0;
   loop sum += a[i];
   
