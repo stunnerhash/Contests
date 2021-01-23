@@ -1,7 +1,5 @@
-//
+//for template
 #include<bits/stdc++.h>
-using namespace std;
-
 using namespace std;
 class Graph
 {
@@ -25,6 +23,7 @@ void Graph::addEdge(int v, int w){
 }
 void Graph::BFS(int s)
 {
+    
     bool *visited = new bool[V];
     for (int i = 0; i < V; i++)
         visited[i] = false;
@@ -40,7 +39,8 @@ void Graph::BFS(int s)
         cout << s << " ";
         queue.pop_front();
         for (i = adj[s].begin(); i != adj[s].end(); ++i)
-            if (!visited[*i]){
+            if (!visited[*i])
+            {
                 visited[*i] = true;
                 queue.push_back(*i);
             }
@@ -61,4 +61,18 @@ void Graph::DFS(int v)
     for (int i = 0; i < V; i++)
         visited[i] = false;
     DFSUtil(v, visited);
+}
+
+int main()
+{
+#ifndef ONLINE_JUDGE
+    freopen ("input1.txt", "r", stdin);
+    freopen ("output1.txt", "w", stdout);
+#endif
+
+    int n;
+    cin>>n;
+    for(int i =0;i<n;i++){
+        cout<<i<<" ";
+    }
 }
