@@ -746,8 +746,8 @@ Note: This avoids typing  i , the last character, the text to insert, <ESC>,
 	:edit ~/.vimrc			for Unix
 	:edit $VIM/_vimrc		for MS-Windows
 
-  2. Now read the example "vimrc" file text:
 
+  2. Now read the example "vimrc" file text:
 	:read $VIMRUNTIME/vimrc_example.vim
 
   3. Write the file with:
