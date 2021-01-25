@@ -1,3 +1,5 @@
+daw ->delete word 
+caw -> delete word (insert mode)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Lesson 1.1:  MOVING THE CURSOR
 
