@@ -48,31 +48,12 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define debug(x...)
 #endif
 
- 
-int getMin(vi arr,int x, int n)
-{
-    int res = arr[x];
-    for (int i = x+1; i <= n; i++)
-        res = min(res, arr[i]);
-    return res;
-}
-
 void Solve()
 {
-  int n ;
-  cin>>n;
-  vi a(n);
-  int maxi=-1e8;
-  lp(i,0,n) cin>>a[i];
-  lp(i,0,n) {
-      int temp =a[i];
-      lp(j,i,n){
-        temp =min(temp,a[j]);
-        if(temp*(j-i+1)>maxi)
-            maxi=temp*(j-i+1);
-     }
-  }
-    cout<< maxi<<endl;
+  char a ,b , c;
+  cin>>a>>b>>c;
+    if(a== b && b== c) cout<< "Won";
+    else cout<<"Lost";
 }
 
 int main()
@@ -81,6 +62,7 @@ int main()
  srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
  int Testcase = 1;
+ cin >> Testcase;
 
  while (Testcase--) Solve();
  return 0;
