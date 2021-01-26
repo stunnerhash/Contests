@@ -1,5 +1,8 @@
 daw ->delete word 
 caw -> delete word (insert mode)
+#,* -> Find the previous/next occurrence of the token under the cursor.
+
+   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Lesson 1.1:  MOVING THE CURSOR
 
