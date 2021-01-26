@@ -50,20 +50,13 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    bool flag = 0;
+  bool flag = 0;
   ll n;
   cin>>n;
-  if(n%2){
-    cout<< "YES\n";
-    return;
-  }
-  for(ll i =3;i*i<=n;i+=2){
-      if(n%i == 0) {
-          flag =1;
-          break;
-      }
-  }
-    cout<<(flag?"YES": "NO")<<endl;
+  
+    while(n%2 == 0) n /= 2;
+    if( n == 1) cout << "NO\n";
+    else cout<<"YES\n";
 }
 
 int main()
