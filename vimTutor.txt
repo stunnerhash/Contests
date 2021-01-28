@@ -1,8 +1,9 @@
 daw ->delete word 
 caw -> delete word (insert mode)
 #,* -> Find the previous/next occurrence of the token under the cursor.
+ge  -> previous end of word;
+fc  -> forward to a charachter
 
-   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			Lesson 1.1:  MOVING THE CURSOR
 
