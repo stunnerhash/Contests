@@ -65,7 +65,7 @@ Note: The cursor keys should also work.  But using hjkl you will be able to
 
   4. Repeat steps 2 through 4 until the sentence is correct.
 
----> The ccow jumpedd ovverr thhe mooon.
+---> The cow jumped over the moon.
 
   5. Now that the line is correct, go on to Lesson 1.4.
 
