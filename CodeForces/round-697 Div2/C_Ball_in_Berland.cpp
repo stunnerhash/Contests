@@ -53,11 +53,21 @@
  {
    int n1,n2,k;
    cin>>n1>>n2>>k;
-   vpi ab(k);
-   lop(i,k) cin>>ab[i].first;
-   lop(i,k) cin>>ab[i].second;
-    sortall(ab);
-    debug(ab);
+   int a[k],b[k];
+   map<int,int>ma,mb;
+   lop(i,k){
+    cin>>a[i];
+    ma[a[i]]++; 
+   } 
+   lop(i,k){
+    cin>>b[i];
+    mb[b[i]]++;
+   }
+   ll ans=0;
+   lop(i,k) ans+= (k-1)-(ma[a[i]]-1 +mb[b[i]]-1);
+    debug(ma,mb);
+   cout<< ans/2<<endl;
+
  }
  
  int main()
