@@ -1,4 +1,3 @@
-//incomplete
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -55,29 +54,33 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    int n ,k;
-    cin>>n>>k;
-    vi h(n);
-    loop cin>>h[i];
-    for(int i =n-1;i>0;i--){
-        if (h[i]<h[i-1]) n--;
-        else break;
-    }
-    if(n ==1) {
-        cout<< -1<<endl;
-        return;
-    }
-        
+   string s;
+   cin>>s;
+   int n = s.size();
+   loop {
+       if(!(i%2)){
+           if(s[i] == 'a') {
+               cout<<'b';
+            }
+            else cout<<'a';
+        }
+        else {
+            if(s[i] == 'z'){
+                cout<<'y';
+            }
+            else cout<<'z';
+        }
+   }
+   cout<<endl; 
 }
-
+        
 int main()
 {
  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
  srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
  int Testcase = 1;
-cin>>Testcase;
-
+ cin>>Testcase;
  while (Testcase--)Solve();
  return 0;
 }

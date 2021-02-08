@@ -1,4 +1,3 @@
-//incomplete
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -55,19 +54,18 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    int n ,k;
-    cin>>n>>k;
-    vi h(n);
-    loop cin>>h[i];
-    for(int i =n-1;i>0;i--){
-        if (h[i]<h[i-1]) n--;
-        else break;
-    }
-    if(n ==1) {
-        cout<< -1<<endl;
-        return;
-    }
-        
+   ll a,b,  n;
+    cin>>a>>b>>n;
+   vl c(n),d(n);
+    loop cin>>c[i];
+    loop cin>>d[i];
+    ll sum =0;
+    loop sum+= (ceil((float)d[i]/a)*c[i]);
+    debug(sum);
+    ll maxi = INT_MIN;
+    loop maxi = max(c[i],maxi);
+    if(sum<=b+maxi) cout<<"YES\n";
+    else cout<<"NO\n";
 }
 
 int main()
@@ -77,7 +75,6 @@ int main()
 
  int Testcase = 1;
 cin>>Testcase;
-
  while (Testcase--)Solve();
  return 0;
 }
