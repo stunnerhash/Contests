@@ -7,7 +7,8 @@
         "valarray": "cpp",
         "cmath": "cpp",
         "chrono": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "ostream": "cpp"
     },
     "maven.view": "flat"
 }
