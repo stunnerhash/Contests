@@ -54,7 +54,22 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-     
+    int n;
+    cin>>n;
+    vi h(n);
+    loop cin>>h[i];
+    ll sum =0;
+    bool flag = 1;
+    for(int i =0;i<n;i++){
+         sum+= h[i];
+        ll expected = ((i)*(i+1))/2;
+        debug(i,expected, sum);
+        if(sum <expected) flag =0;
+    }
+    
+    if(flag ) cout<<"YES"<<endl;
+    else cout<< "NO"<<endl;
+
 }
 
 int main()
