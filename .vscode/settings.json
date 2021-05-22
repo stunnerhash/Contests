@@ -8,7 +8,8 @@
         "cmath": "cpp",
         "chrono": "cpp",
         "new": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp"
     },
     "maven.view": "flat"
 }

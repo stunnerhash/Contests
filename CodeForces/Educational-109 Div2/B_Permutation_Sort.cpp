@@ -7,7 +7,7 @@ using namespace std;
 #define lp(i, k, n) for (int i = k; k < n? i < n: i > n; k < n? i += 1: i -= 1) 
 #define dbg(x) cout << #x << "=" << x << endl
 #define dbug(x, y) cout << #x << "=" << x << ", " << #y << "=" << y << endl
-//#define read(type) readInt<type>()
+#define read(type) readInt<type>()
 #define pb push_back
 #define mp make_pair
 #define clr(x) memset(x, 0, sizeof(x))
@@ -24,14 +24,6 @@ typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef vector<pi> vpi;
 typedef vector<vi> vvi;
-
-ll read(){
-	char ch=getchar();
-	ll x=0,f=1;
-	while(ch<'0'||ch>'9'){if(ch=='-') f=-1;ch=getchar();}
-	while(ch>='0'&&ch<='9') x=x*10+(ch^48),ch=getchar();
-	return x*f;
-}
 
 void __print(int x) {cerr << x;}
 void __print(long x) {cerr << x;}
@@ -62,26 +54,37 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    int n,q,k;
-    cin>>n>>q>>k;
+    int n;
+    cin>>n;
     vi a(n);
     loop cin>>a[i];
-
-    while(q--){
-        int l,r;
-        cin>>l>>r;
-        l--,r--;
-        ll final = a[l]-1+k-a[r];
-        debug( a[l]-1,k-a[r],final);
-        final += 2*((a[r]-a[l]+1)- (r-l+1));
-        cout<<final<<endl;
+    bool flag =1 ;
+    for(int i =1;i<=n;i++){
+        if (a[i-1] != i) flag =0;
+        debug(a[i-1],i);
     }
+    if(flag){
+        cout<<0<<endl;
+        return;
+    }
+    if(a[0] == n and a[n-1] == 1) {
+        cout<<3<<endl;
+        return;
+    }
+    if(a[0] == 1 or a[n-1] == n) {
+        cout<<1<<endl;
+        return ;
+    }
+    cout<<2<<endl;
 }
 
 int main()
 {
  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
  srand(chrono::high_resolution_clock::now().time_since_epoch().count());
- Solve();
+
+ int Testcase = 1;
+ cin>>Testcase;   
+ while (Testcase--)Solve();
  return 0;
 }
