@@ -54,7 +54,33 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    
+    int n ;
+    cin>>n;
+    vi a(n);
+    loop cin>>a[i];
+    sortall (a);
+    debug(a);
+    int d=INT_MAX;
+    int i=0;
+    for(i =1;i<n;i++){
+       if(a[i]>0) break; 
+       int diff = a[i]-a[i-1];
+       d= min(d,diff);
+    }
+    int ans = i;
+    if(a[0] >0){
+        cout<<1<<endl;
+    }
+    else if(d == 0) cout<<ans<<endl;
+    else{
+        for(;i<n;i++){
+            if(a[i]<=d){
+                ans++; 
+                break;
+            }
+        }
+    cout<<ans<<endl; 
+    }
 }
 
 int main()

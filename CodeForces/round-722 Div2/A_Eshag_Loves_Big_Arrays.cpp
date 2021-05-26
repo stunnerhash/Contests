@@ -1,4 +1,3 @@
-//https://codeforces.com/problemset/problem/1360/E
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -55,26 +54,16 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    int n;
-    cin>>n;
-    debug(n);
-    bool flag = 1;
-    vvi a(n,vi(n,0));
-    loop {
-        string s;
-        cin>>s;
-        // cout<<s[1];
-        lop(j,n) {
-            if(s[j] == '0') a[i][j]=0;
-            else a[i][j]=1;
-        }
-    };
-    lop(i,n-1) lop (j,n-1) {
-        if(a[i][j]) 
-            flag =flag & (a[i][j+1] | a[i+1][j]); 
-        // debug(i,j,flag);
-    }
-    cout<<(flag?"YES":"NO")<<endl;
+   int n;
+   cin>>n;
+   vi a(n);
+   loop cin>>a[i] ;
+   int mini   = INT_MAX;
+   loop mini = min(mini , a[i]);
+   debug(a,mini );
+   int count = 0;
+   loop if(a[i] == mini ) count++;
+   cout<<n-count<<endl;
 }
 
 int main()

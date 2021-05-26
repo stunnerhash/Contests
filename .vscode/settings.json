@@ -9,7 +9,14 @@
         "chrono": "cpp",
         "new": "cpp",
         "ostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "ratio": "cpp",
+        "scoped_allocator": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     },
     "maven.view": "flat"
 }
