@@ -18,5 +18,6 @@
         "type_traits": "cpp",
         "utility": "cpp"
     },
-    "maven.view": "flat"
+    "maven.view": "flat",
+    "C_Cpp.dimInactiveRegions": false
 }
