@@ -17,7 +17,8 @@ using namespace std;
 #define endl "\n"
 #define INF (int)1e9
 #define EPS 1e-9
-#define mod 1000000007
+#define mod 1e9+7
+#define int ll
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pl;
 typedef vector<int> vi;
@@ -25,64 +26,36 @@ typedef vector<ll> vl;
 typedef vector<pi> vpi;
 typedef vector<vi> vvi;
 
-void __print(int x) {cerr << x;}
-void __print(long x) {cerr << x;}
-void __print(long long x) {cerr << x;}
-void __print(unsigned x) {cerr << x;}
-void __print(unsigned long x) {cerr << x;}
-void __print(unsigned long long x) {cerr << x;}
-void __print(float x) {cerr << x;}
-void __print(double x) {cerr << x;}
-void __print(long double x) {cerr << x;}
-void __print(char x) {cerr << '\'' << x << '\'';}
-void __print(const char *x) {cerr << '"' << x << '"';}
-void __print(const string &x) {cerr << '"' << x << '"';}
-void __print(bool x) {cerr << (x ? "true" : "false");}
-
-template<typename T, typename V>
-void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
-template<typename T>
-void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
-void _print() {cerr << "]\n";}
-template <typename T, typename... V>
-void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-#ifndef ONLINE_JUDGE
-#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
-#else
-#define debug(x...)
-#endif
-
-void Solve()
-{
-	int n ;
-	cin>>n;
-	vector<pl>a(n);
-	loop cin>>a[i].second>>a[i].first;
-	sortall(a);
-	ll ans =0, bought = 0;
-	ll i=0 ,k = n-1;
-	while(i<=k){
-		if(a[i].first<=bought) {
-			bought+= a[i].second;
-			ans+=a[i].second;
-			i++;	
+void Solve(){
+	int n;
+	cin >> n;
+	vector<pi> p(n);
+	loop cin >> p[i].second>> p[i].first;
+	sort(all(p));
+	int s = 0, e = n - 1;
+	int ans = 0;
+	int bought = 0;
+	while(s <= e){
+		if(p[s].first <= bought){
+			bought += p[s].second;
+			ans += p[s].second;
+			s++;
 		}
-		else {
-			int req = min(a[k].second,a[i].first-bought);	
-			ans += req*2;
+		else{
+			int req = min(p[s].first - bought, p[e].second	);
 			bought += req;
-			a[k].second-=req;
-			if(a[k].second==0)k--;
+			p[e].second -= req;
+			ans += 2 * req;
+			if(p[e].second == 0)e--;
 		}
 	}
-	cout<<ans<<endl;
+	cout << ans;
 }
 
-int main()
+signed main()
 {
  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
  srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
  int Testcase = 1;
  while (Testcase--)Solve();
  return 0;
