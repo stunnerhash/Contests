@@ -9,6 +9,7 @@ using namespace std;
 #define dbug(x, y) cout << #x << "=" << x << ", " << #y << "=" << y << endl
 #define read(type) readInt<type>()
 #define pb push_back
+#define no             {cout << "NO" <<endl; return;}
 #define mp make_pair
 #define clr(x) memset(x, 0, sizeof(x))
 #define all(x) x.begin(), x.end()
@@ -54,129 +55,32 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-	int n ,m;
-	cin>>n>>m;
-	vvi a(n,vi (m,0));
-	bool flag = 1;
-	loop lop(k,m) {
-		char c;
-		cin>>c;
-		if(c=='R') {a[i][k] = -1; flag = 0;}
-		else if(c== 'W') {a[i][k]  =1;flag = 0;}
-		else a[i][k] = 0;
-	
-	}
-	if(flag ){
-		a[0][0] = 1;
-	}
-	lop(x,1){
-	loop {
-		lop(k,m){
-			debug(a);
-			if(a[i][k] == 1){
-				int l = 0,o=0;
-				if(i%2 == 1) l = 1;
-				if(k%2 == 1) o = 1;
-				for(;l<n;l+=2) {
-					if(a[l][k] >= 0 )	{
-						a[l][k] = 1;
-					}
-					else {
-						cout<<"NO\n";
-						return;
-					}
-				}
-				for(;o<m;o+=2){
-					if(a[i][o] >= 0){
-						a[i][o] = 1;
-					}
-					else {
-						cout<<"NO\n";
-						return;
-					}
-				}
-			}
-			if(a[i][k] == -1){
-				int l = 0,o=0;
-				if(i%2 == 1) l = 1;
-				if(k%2 == 1) o = 1;
-				for(;l<n;l+=2) {
-					if(a[l][k] <=0 )	{
-						a[l][k] = -1;
-					}
-					else {
-						cout<<"NO\n";
-						return;
-					}
-				}
-				for(;o<m;o+=2){
-					if(a[i][o] <=0){
-						a[i][o] = -1;
-					}
-					else {
-						cout<<"NO\n";
-						return;
-					}
-				}
-			}
-		}
-	}
-	}
+	int n, m;
+    cin >> n >> m;
+    vector<string> s(n);
 
-	loop {
-		lop(k,m){
-			if(a[i][k] == 0) continue;
-			int notbe = a[i][k]; 
-			if(i>=1){
-				if(a[i-1][k] == notbe) {
-					cout<<"NO"<<endl;
-					return;
-				}
-				a[i-1][k] = -(a[i][k]);
-			}
-			if(k>=1){
-				if(a[i][k-1] == notbe) {
-					cout<<"NO"<<endl;
-					return;
-				}
-				 a[i][k-1] = -(a[i][k]);
-			}
-			if(i<=n-2) {
-				if(a[i+1][k] == notbe) {
-					cout<<"NO"<<endl;
-					return;
-				}
-				a[i+1][k] = -(a[i][k]);
-			}
-			if(k<=m-2) {
-				if(a[i][k+1] == notbe) {
-					cout<<"NO"<<endl;
-					return;
-				}
-				a[i][k+1] = -(a[i][k]);
-			}
-		}
-	}
-
-	if(a[0][0] == 0) {
-		if(n>=2) {
-			a[0][0] = -a[1][0];
-		}
-		else if(m>=2){
-			a[0][0] = -a[0][1];
-		}
-		else a[0][0] = 1;
-	}
-	cout<<"YES\n";
-	
-	loop{
-		lop(k,m){
-			if(a[i][k] == -1) cout<<"R";
-			else if (a[i][k] == 1)cout<<"W";
-			else cout<<".";
-		}
-		cout<<endl;
-	}
+    for (int i = 0; i < n; i++)      cin >> s[i];
+    bool found = false;
+    for (int r = 0; r < 2; r++) {
+      	bool ok = true;
+        loop lop(j,m){ 
+      	    char c = ((i + j + r) % 2 == 0 ? 'R' : 'W');
+      	    if (s[i][j] == c) ok = false;
+        }
+      	if(ok){
+      		cout << "YES" << '\n';
+        	for (int i = 0; i < n; i++) {
+        		for (int j = 0; j < m; j++) {
+         		   char c = ((i + j + r + 1) % 2 == 0 ? 'R' : 'W');
+         		   cout << c;
+         		}
+          		cout << '\n';
+        	}
+      	  	found = true;
+      	  	break;
+      	}
+    }
+    if (!found) no;
 }
 
 int main()
@@ -186,6 +90,7 @@ int main()
 
  int Testcase = 1;
  cin>>Testcase;   
+
  while (Testcase--)Solve();
  return 0;
 }
