@@ -52,48 +52,32 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define debug(x...)
 #endif
 
-int gcd(int a, int b)
-{
-    if (a == 0) return b;
-    if (b == 0 || a == b) return a;
-    if (a > b) return gcd(a-b, b);
-    else return gcd(a, b-a);
-}
-
-int cnt(vi a){
-    int n = a.size();
-    int ans =0 ;
-    loop {
-        lp(j,i+1,n) {
-            if(gcd(a[i] , 2*a[j])>1) ans++;
-        }
-    }
-    return ans ;
-}
-
 void Solve()
 {
-    int n ;
-    cin>>n;
-    vi a(n);
-    loop cin>>a[i] ;
-    int x=0;
-    loop {
-        if(a[i]%2 == 0 ){ 
-            swap(a[i] , a[x]); 
-            x++;
-        }
-    }
-    cout<<cnt (a)<<endl;
+	string s;
+	cin>>s;
+	int n= s.size();
+	ll count =0;
+	ll ans = 1;
+	loop if(s[i]!='?') {
+		ans = 0;
+	}
+	if(ans) {
+		ll answer = n*(n-1);
+		cout<<answer<<endl;
+		return;
+	}
+	
+	cout<<ans<<endl;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+ ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+ srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-    int Testcase = 1;
-    cin>>Testcase;   
-    while (Testcase--)Solve();
-    return 0;
+ int Testcase = 1;
+ cin>>Testcase;   
+ while (Testcase--)Solve();
+ return 0;
 }
