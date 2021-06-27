@@ -4,7 +4,7 @@ using namespace std;
 #define loop           	for(int i = 0; i < n; i++)
 #define lop(i, n)      	for(int i = 0; i < n; i++)
 #define lp(i, k, n)    	for(int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
 #define yes(flag)      	cout<<(flag?"YES":"NO")<<endl;
 #define no             	{cout << "NO" <<endl; return;}
 #define clr(x)         	memset(x, 0, sizeof(x))
