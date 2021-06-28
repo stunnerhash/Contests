@@ -65,25 +65,14 @@ bool isPerfectSquare(long double x)
 }
 void Solve()
 {
-    short int n;
+    int n;
     cin>>n;
-    int a[n];
-    loop cin>>a[i];
-    long double x=1;
-    if(n == 1) {
-        if(isPerfectSquare(a[0]) == 0 )  { yes; return ; }
-        else{ no; return; } 
-
-    }
-    loop {
-        lop(j,n){
-            if(isPerfectSquare(a[i]*a[j]) == 0){
-             cout<<"YES\n"; 
-             return ;
-            }
-        }
-    }
-    cout <<"NO"<<endl;
+	bool flag = 1;
+    loop{
+		int x;cin>>x;
+		if(!isPerfectSquare(x)) flag = 0;
+	}
+   	flag ? no:yes;
 }
 
 int main()
