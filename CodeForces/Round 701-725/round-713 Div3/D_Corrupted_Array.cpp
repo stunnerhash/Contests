@@ -54,34 +54,26 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 void Solve()
 {
-    int n;
-    cin>>n;
-    n+=2;
-    vi a(n),b(n);
-    loop cin>>b[i];
-    sortall(b);
-
-    ll sum =0;
-    lop(i,n-1) sum+= b[i];
-    
-
-    bool flag = 0;
-    int val = sum - b[n-1];
-    if(binary_search(b.begin(), b.end(), val)){
-        lop (i , n - 1){
-            if(flag ==0 && b[i] == val){
-                flag = 1;
-                continue;
-            }cout<<b[i]<<" ";
-        }cout<<endl;
-    } 
-    sum -= b[n-2];
-    if(sum == b[n-2]) {
-        lop(i,n-2) cout<<b[i]<<" ";
-        cout<<endl;
-        return;
-    }
-    else cout<<-1<<endl;
+	int n; cin >> n;
+	vl b(n+2); lop(i, n+2) cin >> b[i];
+	sort(all(b));
+	ll sum = 0; loop sum += b[i];
+	if (sum == b[n]) {
+		loop cout << b[i] << " ";
+		cout << endl;
+		return;
+	}
+	sum += b[n];
+	lop(i, n+1) {
+		if (sum - b[i] == b[n+1]) {
+			lop(j,n+1) 
+				if (i == j)continue;
+				else cout << b[j] << " ";
+			cout << endl;
+			return;
+		}
+	}
+	cout << -1 << endl;    
 }
 
 int main()
