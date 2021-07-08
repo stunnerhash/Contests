@@ -1,78 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ld long double
 
-#define loop           	for (int i = 0; i < n; i++)
-#define lop(i, n)      	for (int i = 0; i < n; i++)
-#define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
-#define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n")
-#define no             	{cout<< "NO\n"; return;}
-#define clr(x)         	memset (x, 0, sizeof(x))
-#define all(x)         	x.begin(), x.end()
-#define sortall(x)     	sort(all(x))
-#define ll             	long long
-#define pb             	push_back
-#define mp             	make_pair
-#define INF            	(int) 1e9
-#define mod            	1000000007	
-#define ss             	second
-#define ff             	first
-#define endl           	"\n"
-typedef pair<int, int> 	pi;
-typedef pair<ll, ll>   	pl;
-typedef vector<int>    	vi;
-typedef vector<ll>     	vl;
-typedef vector<pi>     	vpi;
-typedef vector<vi>     	vvi;
+const ld eps = 1e-9;
+const ld scale = 1e+6;
 
-
-void __print(int x)    	        {cerr << x;}
-void __print(long x)   	        {cerr << x;}
-void __print(float x)  	        {cerr << x;}
-void __print(double x) 	        {cerr << x;}
-void __print(unsigned x)       	{cerr << x;}
-void __print(long long x)      	{cerr << x;}
-void __print(long double x)    	{cerr << x;}
-void __print(unsigned ll x)    	{cerr << x;}
-void __print(unsigned long x)  	{cerr << x;}
-void __print(const char *x)    	{cerr << '"' << x << '"';}
-void __print(const string &x)  	{cerr << '"' << x << '"';}
-void __print(char x)           	{cerr << '\''<< x <<'\'';}
-void __print(bool x)           	{cerr <<(x?"true":"false");}
-
-template<typename T, typename V>
-	void __print(const pair<T, V> &x)
-		{cerr << '{'; __print(x.first);cerr<<',';__print(x.second);cerr<<'}';}
-template<typename T>
-	void __print(const T &x) 
-		{int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
-	void _print()
-		{cerr << "]\n";}
-template <typename T, typename... V>
-	void _print(T t, V... v)
-		{__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-
-#ifndef ONLINE_JUDGE
-#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
-#else
-#define debug(x...)
-#endif
-
-// #define int long long
-const int  N = 200005;
-
-void Solve()
-{}
-
-signed main()
+ld expRaces(int c,int m,int p,int v)
 {
-	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+    ld ans = p/scale;
+    if(c>0) {
+        if(c>v) {
+            if(m>0) ans += (c/scale)*(1+expRaces(c-v,m+v/2,p+v/2,v));
+            else ans += (c/scale)*(1+expRaces(c-v,0,p+v,v));
+        }
+        else {
+            if(m>0) ans += (c/scale)*(1+expRaces(0,m+c/2,p+c/2,v));
+            else ans += (c/scale)*(1+expRaces(0,0,p+c,v));
+        }
+    }
+    if(m>0) {
+        if(m>v) {
+            if(c>0) ans += (m/scale)*(1+expRaces(c+v/2,m-v,p+v/2,v));
+            else ans += (m/scale)*(1+expRaces(0,m-v,p+v,v));
+        }
+        else {
+            if(c>0) ans += (m/scale)*(1+expRaces(c+m/2,0,p+m/2,v));
+            else ans += (m/scale)*(1+expRaces(0,0,p+m,v));
+        }
+    }
+    return ans;
+}
 
-	int Testcase = 1;
-	cin>>Testcase;
+int main()
+{
+    int t; cin >> t;
+    while(t--)
+    {
+        ld cd,md,pd,vd;
+        cin >> cd >> md >> pd >> vd;
 
-	while (Testcase--) Solve();
-	 return 0;
+        int c = round(cd*scale);
+        int m = round(md*scale);
+        int p = round(pd*scale);
+        int v = round(vd*scale);
+
+        ld ans = expRaces(c,m,p,v);
+
+        cout << setprecision(12) << fixed << ans << '\n';
+    }
 }

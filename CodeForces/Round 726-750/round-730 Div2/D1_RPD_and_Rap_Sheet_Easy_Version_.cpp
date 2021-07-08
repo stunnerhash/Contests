@@ -1,24 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define loop for(int i =0;i<n;i++)
 int main()
 {
 	int t = 1;
-	scanf("%d",&t);
+	cin>>t;
 	while (t--){
 		int n, k;
 		cin>>n>>k;
-		
-		int bit = 0, r = 0;
-		for (int i = 0; i < n; i++){
-			cout << (i ^ bit) << endl;
-			cout.flush();
-
-			cin >> r;
-			bit ^= i ;
-			if(r == 1) break;
-			if (r == -1) exit(-1);
+		int p = 0,v=0;
+		loop{
+			cout<<(i ^ p)<<endl;
+			p ^= (i^p);
+			cin >> v;
+			if(v == 1) break;
 		}
 	}
-	return 0;
 }
