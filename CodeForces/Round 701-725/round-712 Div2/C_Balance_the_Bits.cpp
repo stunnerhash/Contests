@@ -64,21 +64,37 @@ const int  N = 200005;
 
 void Solve()
 {
-	int n; cin>>n;
+	int n;    cin>>n;
 	string s; cin>>s;
+	vi ss(n); loop ss[i] = s[i]-'0';
 	int cnt =0;
+	lop(i,n) if(ss[i] == 0) cnt++;
+	
 	bool flag = 1;
-	if(s[0] != '1' and s[1] != '1') flag = 0;
+	flag = (cnt %2 == 0);
 
-	lop(i,n/2) if(s[i] == '0') cnt++;
-	lp(i,n/2,n) if(s[i] == '0')cnt--;
-	flag = cnt == 0;
+	if(ss[0] == 0 or  ss[n-1]  == 0) flag = 0;
 	yes(flag);
-	string a,b;
-	
-	flag ^= 1;
 
-	
+	if(flag == 0) return;
+
+	vector<char> a,b;
+	int one = (n-cnt)/2;
+	bool zero = 1;
+	loop {
+		if(ss[i]){
+			a.pb(one>0?'(':')');
+			b.pb(one>0?'(':')');
+			one--;
+		}
+		else {
+			a.pb(zero?'(':')');
+			b.pb(zero?')':'(');
+			zero ^= 1;
+		}
+	}
+	loop cout<<a[i]; cout<<endl;
+	loop cout<<b[i]; cout<<endl;
 }
 
 signed main()
