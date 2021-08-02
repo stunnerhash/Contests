@@ -63,7 +63,10 @@ template <typename T, typename... V>
 const int  N = 200005;
 
 void Solve()
-{}
+{
+	int n; cin>>n;
+	cout<<2<<" "<<n-1<<endl;
+}
 
 signed main()
 {

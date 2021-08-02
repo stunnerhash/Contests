@@ -59,20 +59,39 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-// #define int long long
-const int  N = 200005;
-
-void Solve()
-{}
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
+	int n, m; cin>>n>>m;
+	int ans = n, x, y;
+	vi frnd(n);
+	lop(i, m){
+		cin >> x >> y;
+		if (x > y) swap(x, y);
+		if (frnd[--x]++ == 0) ans--;
+	}
 
-	while (Testcase--) Solve();
-	 return 0;
+	int q; cin>>q;
+	while(q--){
+		int query = 0;
+		cin>>query;
+		switch (query)
+		{
+			case 1:
+				cin>>x>>y;
+				if(x>y) swap(x,y);
+				if(frnd[--x]++ == 0) ans--;
+				
+				break;
+			case 2:
+				cin>>x>>y;
+				if(x>y) swap(x,y);
+				if(--frnd[--x] == 0) ans++;
+				break;
+			case 3:
+				cout<<ans<<endl;
+		}
+	}
 }
