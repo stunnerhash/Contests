@@ -1,1 +1,0 @@
-{"name":"Local: C_Unstable_String","url":"e:\\Temp\\Contests\\CodeForces\\educational-110 Div2\\C_Unstable_String.cpp","tests":[{"id":1623874788399,"input":"3\n0?10\n???\n?10??1100","output":"8\n6\n25"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Temp\\Contests\\CodeForces\\educational-110 Div2\\C_Unstable_String.cpp","group":"local","local":true}
