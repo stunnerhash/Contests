@@ -51,70 +51,42 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define debug(x...)
 #endif
 
-int valley (ll a[],int n){
-    int ans =0;
-    for(int i =1;i<n-1;i++)
-        if( (a[i]>a[i-1] and a[i]> a[i+1]) or (a[i] < a[i-1] and a[i] < a[i+1]))
-        ans ++;
-    return ans;
+int n, a[300005]; 
+
+int isValley(int i) {
+    return (i > 0 && i < n - 1 && a[i] < a[i - 1] && a[i] < a[i + 1]);
 }
-bool is_valley(ll a[],int i){
-    if((a[i]<a[i-1]) && (a[i]< a[i+1]))
-     return 1;
-    return 0;
+
+int isHill(int i) {
+    return (i > 0 && i < n - 1 && a[i] > a[i - 1] && a[i] > a[i + 1]);
 }
-bool is_hill(ll a[], int i){
-    if ((a[i] > a[i-1]) && (a[i] > a[i+1]))
-        return 1;
-    return 0;
-}
-void Solve()
-{
-    int n;
-    cin>>n;
-    ll a[n];
-    loop cin>>a[i];
-    if(n<=3) {
-        cout<< 0<< endl;
-        return; 
-    }
-    int ans = valley(a,n);
-    if(ans <= 1){
-        cout<< 0<<endl;
-        return ;
-    }
-    int sub;
-    if(n>=5){
-        for(int i=2;i<n-2;i++){
-            if( (is_valley(a,i) and is_hill(a,i-1) and is_hill(a,i+1))) 
-            {
-                sub =3;
-                break;
-            }
-            else if (is_hill (a,i) and is_valley(a,i-1) and is_valley(a,i+1)){
-                sub =3;
-                break;
-            }
-        }
-        if(sub ==3) {
-            cout<< ans -3<<endl;
-            return;
-        }
+
+int Solve() {
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    int is[n] = {};
+    int s = 0;
+    for (int i = 1; i < n - 1; i++) {
+        if (isHill(i) || isValley(i))
+            is[i] = 1, s++;
     }
 
-    for(int i=2;i<n-1;i++){
-        if ( ( is_valley(a,i-1) and is_hill(a,i)) or( is_valley(a,i) and is_hill(a,i-1))){
-            sub =2;
-            break;
-        }
+    int ans = s;
+    for (int i = 1; i < n - 1; i++) {
+        int temp = a[i];
+        a[i] = a[i - 1];
+        ans = min(ans, s - is[i - 1] - is[i] - is[i + 1] + isHill(i - 1) + isValley(i - 1) + isHill(i) + isValley(i) + isHill(i + 1) + isValley(i + 1));
+        a[i] = a[i + 1];
+        ans = min(ans, s - is[i - 1] - is[i] - is[i + 1] + isHill(i - 1) + isValley(i - 1) + isHill(i) + isValley(i) + isHill(i + 1) + isValley(i + 1));
+        a[i] = temp;
     }
-    if(sub == 2) {
-        cout<<ans -2<<endl;
-        return;
-    }
-    cout<< ans-1<<endl;
-    return;
+
+    cout << ans << "\n";
 }
+
+    
 
 int main()
 {
@@ -127,3 +99,4 @@ int main()
  while (Testcase--) Solve();
  return 0;
 }
+
