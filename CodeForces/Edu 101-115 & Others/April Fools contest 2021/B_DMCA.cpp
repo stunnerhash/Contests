@@ -63,7 +63,19 @@ template <typename T, typename... V>
 const int  N = 200005;
 
 void Solve()
-{}
+{
+	int n; cin>>n;
+	
+	while(n>9){
+		int sum = 0;
+		while(n){
+			sum+= n%10;
+			n/=10;
+		}
+		n = sum;
+	}
+	cout<<n<<endl;
+}
 
 signed main()
 {
@@ -71,7 +83,6 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
 
 	while (Testcase--) Solve();
 	return 0;

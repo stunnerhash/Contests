@@ -63,7 +63,13 @@ template <typename T, typename... V>
 const int  N = 200005;
 
 void Solve()
-{}
+{
+	string s; cin>>s;
+	int n = s.size()-2;
+	bool flag = 1;
+	if(n) loop flag &= (s[i+2] -'A' == (s[i+1]-2*'A' + s[i])%26);
+	yes(flag);
+}
 
 signed main()
 {
@@ -71,8 +77,6 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
 
 	while (Testcase--) Solve();
-	return 0;
 }
