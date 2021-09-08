@@ -5,8 +5,8 @@ using namespace std;
 #define lop(i, n)      	for(int i = 0; i < n; i++)
 #define lp(i, k, n)    	for(int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n");
-#define no             	{cout << "NO\n"; return;}
+#define yes(flag)      	cout<<(flag?"YES":"NO")<<endl;
+#define no             	{cout << "NO" <<endl; return;}
 #define clr(x)         	memset(x, 0, sizeof(x))
 #define trav(a)        	for (auto it : a)
 #define all(x)         	x.begin(),x.end()
@@ -58,38 +58,40 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
- 
+
 // #define int long long
-const int  N = 2005;
+const int  N = 200005;
 
-// void Solve()
-// {
-
-// }
-
-ll mem[N][N], a[N];
- 
-ll dp(int l, int r) {
-    if(mem[l][r] != -1) return mem[l][r];
-    if(l == r) return 0;
-    return mem[l][r] = a[r] - a[l] + min(dp(l + 1, r), dp(l, r - 1));
+bool bad(vi v)
+{
+	int s = 0;
+	for (int i : v) s += i;
+	if (s % 2) return 0;
+	bitset<200005> b;
+	b[0] = 1;
+	for (int i : v) b |= (b << i);
+	return b [s/2];
 }
- 
-int Solve() {
-    int n;
-    cin >> n;
-   	loop cin >> a[i];
-    sort(a, a + n);
-	memset(mem,-1,sizeof(mem));
-	
-    cout << dp(0, n - 1) << '\n';
+
+void Solve()
+{
+	int n;
+	cin >> n;
+	vi v(n);
+	loop cin >> v[i];
+	if (bad(v))
+	{
+		pi mn(20, 0);
+		loop mn = min(mn, mp(__builtin_ctz(v[i]), i + 1));
+		cout<<1<<endl<<mn.second;
+	}
+	else cout<<0;
 }
+
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	while (Testcase--) Solve();
-	 return 0;
+	Solve();
 }
