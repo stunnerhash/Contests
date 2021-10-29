@@ -63,7 +63,22 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n, k;
+	cin >> n >> k;
+	vi a(k);
+	lop(i,k) {
+		int x; cin>>x;
+		a[i] = n-x;
+	}
+	sortall(a);
+	int sum = 0;
+	int ans = 0;
+	while(ans<k){
+		sum += a[ans];
+		if(sum>=n) break;
+		ans++;
+	}
+	cout<<ans<<endl;
 }
 
 signed main()

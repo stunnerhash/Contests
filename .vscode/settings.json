@@ -37,7 +37,9 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"thread": "cpp",
-		"typeindex": "cpp"
+		"typeindex": "cpp",
+		"unordered_map": "cpp",
+		"unordered_set": "cpp"
 	},
     "maven.view": "flat",
     "C_Cpp.dimInactiveRegions": false

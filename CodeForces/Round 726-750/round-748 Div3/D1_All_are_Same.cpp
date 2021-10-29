@@ -63,7 +63,15 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n;cin>>n;
+	vi a(n);loop cin>>a[i];
+	vi b(n-1); 
+	sortall(a);
+	lop(i,n-1) b[i] = a[i+1]-a[i];
+	int ans= b[0];
+	lop(i,n-1) ans = __gcd(b[i],ans);
+	if(ans  == 0) cout<<-1<<endl;
+	else cout<<ans<<endl;
 }
 
 signed main()

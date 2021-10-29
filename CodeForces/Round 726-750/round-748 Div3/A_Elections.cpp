@@ -63,7 +63,28 @@ template <typename T, typename... V>
 
 void Solve()
 {
+	int a[3];
+	int n = 3; 
+	loop cin>>a[i];
 	
+	int mx = -1;
+	loop mx = max(mx, a[i]);
+
+	int cnt = 0;
+	loop if(mx == a[i]) cnt++;
+	if(cnt == 1){
+		loop {
+			if(mx == a[i]) cout<<0<<" ";
+			else cout<<mx-a[i]+1<<" ";
+		}
+	}
+	else {
+		loop {
+			if(mx == a[i]) cout<<1<<" ";
+			else cout<<mx-a[i]+1<<" ";
+		}
+	}
+	cout<<endl;
 }
 
 signed main()

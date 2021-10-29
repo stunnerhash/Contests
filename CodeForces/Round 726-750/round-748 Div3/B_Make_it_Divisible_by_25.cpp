@@ -60,10 +60,37 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
+#define int  long long 
 
 void Solve()
 {
-	
+	string s; 
+	cin>>s;
+	int n = s.size();
+	int zero = 0;
+	int five = 0;
+	int ans  = 1e9;
+	for(int i = n-1;i>=0;i--)
+	{
+		if(s[i] == '5') five++;
+		if( five ) if(s[i] == '2' or s[i] == '7') {
+			ans = n-i-2;
+			debug(1,ans,s[i],i);
+			break;
+		}
+	}
+	for(int i = n-1;i>=0;i--)
+	{
+		if(s[i] == '0') zero++;
+		if(zero == 2) {ans = min(ans, n-i-2); break;}
+		if( zero ) if(s[i] == '5') {
+			ans = min(ans,n-i-2);
+			debug(2,ans,s[i],i);
+			break;
+		}
+	}	
+	// cerr<<endl;
+	cout<<ans<<endl;
 }
 
 signed main()
