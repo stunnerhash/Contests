@@ -87,14 +87,28 @@ void _print(T t, V... v)
 #define debug(x...)
 #endif
 
-string s;
 void Solve()
 {
-	int ans = 0, n = s.size();
-	for (int i = 1; i < s.size(); i++)
-		if (s[i - 1] == s[i] || s[i - 2] == s[i])
-			ans++, s[i] = 0;
-	cout << ans << '\n';
+	int n; cin >> n;
+	string s; cin >> s;
+	vi id;
+
+	loop if (s[i] == '2') id.push_back(i);
+	int k = id.size();
+
+	if (k == 1 || k == 2) no;
+
+	vector<string> t(n, string(n, '='));
+	loop t[i][i] = 'X';
+
+	lop(i, k){
+		int x = id[i], y = id[(i + 1) % k];
+		t[x][y] = '+';
+		t[y][x] = '-';
+	}
+
+	yes(1);
+	loop cout << t[i] << '\n';
 }
 
 signed main()
@@ -105,6 +119,7 @@ signed main()
 	int Testcase = 1;
 	cin >> Testcase;
 
-	while (cin >> s) Solve();
+	while (Testcase--)
+		Solve();
 	return 0;
 }
