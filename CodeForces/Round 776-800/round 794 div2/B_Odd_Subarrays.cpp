@@ -59,15 +59,23 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int n;cin>>n;
+	vi a(n+1); loop cin>>a[i];
+	int cnt = 0;
+	int mx = a[0];
+	for(int i = 1;i<n;i++){
+		if(a[i]<mx){
+			debug(a,i);
+			mx = a[i+1];
+			cnt++;
+		}
+		else mx = max(mx,a[i]);
 	}
+	cout<<cnt<<endl;
 }
 
 signed main()

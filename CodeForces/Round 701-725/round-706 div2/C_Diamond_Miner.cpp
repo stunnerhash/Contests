@@ -14,6 +14,8 @@ using namespace std;
 #define ll             	long long
 #define pb             	push_back
 #define mp             	make_pair
+#define INF            	(int) 1e9
+#define mod            	1000000007	
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -23,9 +25,6 @@ typedef vector<int>    	vi;
 typedef vector<ll>     	vl;
 typedef vector<pi>     	vpi;
 typedef vector<vi>     	vvi;
-const ll mod  = 1000000007;
-const ll inf  =	1e9;
-const ll linf =	1e18;
 
 
 void __print(int x)    	        {cerr << x;}
@@ -59,15 +58,23 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+#define int long long
+const int  N = 200005;
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int n, x, y; cin >> n;
+	vi a,b;
+	lop(i,2*n) {
+		cin >> x >> y;
+		if(x == 0) a.pb(abs(y));
+		else b.pb(abs(x));
 	}
+	long double ans = 0;
+	sortall(a); sortall(b);
+	loop ans+= sqrt((long double)a[i]*a[i] + (long double)b[i]*b[i]);
+	cout<<setprecision(20)<<ans<<endl;
 }
 
 signed main()

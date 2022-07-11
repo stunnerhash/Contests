@@ -59,15 +59,25 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int n; cin>>n;
+	vi a(n); loop cin>>a[i]; 
+	int mn = 100;
+	loop{
+		int cnt = 0;
+		int temp = a[i];
+		while(true)
+		{
+			if(temp%2) break;
+			cnt++;
+			temp/=2;
+		}
+		mn = min(mn,cnt);
 	}
+	debug(mn);
 }
 
 signed main()

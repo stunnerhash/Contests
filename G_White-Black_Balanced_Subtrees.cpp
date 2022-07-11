@@ -59,15 +59,44 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
+void addEdge(vector<int> adj[], int u, int v)
+{
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+}
+ 
+void DFSUtil(int u, vector<int> adj[], vector<bool> &visited)
+{
+    visited[u] = true;
+    cout << u << " ";
+    for (int i=0; i<adj[u].size(); i++)
+        if (visited[adj[u][i]] == false)
+            DFSUtil(adj[u][i], adj, visited);
+}
+ 
+void DFS(vector<int> adj[], int V)
+{
+    vector<bool> visited(V, false);
+    for (int u=0; u<V; u++)
+        if (visited[u] == false)
+            DFSUtil(u, adj, visited);
+}
+int dif = 0;
+int solve(vi ad[],int n+1){
+
+}
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int n; cin>>n;
+	vector<int> ad[n+1];
+	for(int i = 2;i<=n;i++){
+		int x; cin>>x;
+		addEdge(ad,i,x);
 	}
+	string s; cin>>s;
+	cout<<solve(ad,n+1)<<endl;
 }
 
 signed main()

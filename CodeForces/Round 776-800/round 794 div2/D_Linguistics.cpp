@@ -7,7 +7,7 @@ using namespace std;
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
 #define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
 #define yes(x)      	cout<<(x?"YES\n":"NO\n")
-#define no             	{cout<< "NO\n"; return;}
+#define no             {cout<< "NO\n"; return;}
 #define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
 #define sortall(x)    	sort(all(x))
@@ -59,16 +59,56 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int a, b, c, d;
+	cin>>a>>b>>c>>d;
+
+	string s; cin >> s;
+	int n = s.size();
+
+
+	if (count(all(s), 'A') != c + d + a) no
+	vector<int> ab, ba;
+
+	int baseline = 0;
+	for (int i = 0,k; i < n; i++)
+	{
+		for (k = i; k < n && (s[k] != s[i]) == ((k - i) & 1); k++);
+
+		debug(i,k);
+		int len = k - i;
+		if (len == 1) continue;
+
+		baseline += (len - 1) / 2;
+		if (len % 2 == 0){
+			if (s[i] == 'A') ab.pb(len / 2);
+			else ba.pb(len / 2);
+		}
+
+		i = k - 1;
 	}
+
+	sortall(ab);
+	sortall(ba);
+
+	debug(ab,ba,baseline);
+	for (int i : ab) {
+		if (i > c) break;
+		baseline -= (i - 1);
+		c -= i;
+	}
+
+	for (int i : ba) {
+		if (i > d) break;
+		baseline -= (i - 1);
+		d -= i;
+	}
+	yes(baseline >= (c + d));
 }
+ 
 
 signed main()
 {

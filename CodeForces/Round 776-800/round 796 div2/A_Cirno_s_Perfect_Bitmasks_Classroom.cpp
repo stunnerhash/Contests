@@ -59,15 +59,28 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+#define int long long
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
+	int n, k; cin>>n>>k;
 	vi a(n); loop cin>>a[i];
-	loop {
-		
+
+	if(k<n){
+		int ans = 0,sum = 0;
+		for(int i = 0;i<k ;i++) sum += a[i];
+		for(int i = k;i<n;i++){
+			ans = max(ans,sum);	
+			sum += (a[i]-a[i-k]);
+		}
+		ans = max(sum,ans);
+		cout<<(ans+ (k*(k-1))/2)<<endl;
+		return;
 	}
+
+	int ans = 0; loop ans+= a[i];
+	cout<<(ans + n*(2*k-n-1)/2)<<endl;
 }
 
 signed main()

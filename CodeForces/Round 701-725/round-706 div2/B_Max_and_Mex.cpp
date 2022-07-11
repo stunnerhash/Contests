@@ -14,6 +14,8 @@ using namespace std;
 #define ll             	long long
 #define pb             	push_back
 #define mp             	make_pair
+#define INF            	(int) 1e9
+#define mod            	1000000007	
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -23,9 +25,6 @@ typedef vector<int>    	vi;
 typedef vector<ll>     	vl;
 typedef vector<pi>     	vpi;
 typedef vector<vi>     	vvi;
-const ll mod  = 1000000007;
-const ll inf  =	1e9;
-const ll linf =	1e18;
 
 
 void __print(int x)    	        {cerr << x;}
@@ -59,15 +58,30 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
+	int n, k; cin>>n>>k;
 	vi a(n); loop cin>>a[i];
-	loop {
-		
+	sortall(a);
+	int mx = -INF;
+	loop mx = max(mx, a[i]);
+	int mex = mx+1;
+	lop(i, mx) if (a[i] != i) {
+		mex = i;
+		break;
 	}
+	vi::iterator it = find(all(a),(mex+mx+1)/2);
+	bool ok =  (it== a.end());
+
+	if (mex == mx + 1) {
+		cout<<n+k<<endl;
+		return;
+	}
+	
+	if(k>0 and ok) n++;
+	cout<<n<<endl;
+
 }
 
 signed main()

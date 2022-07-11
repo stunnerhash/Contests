@@ -59,15 +59,34 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
+	int n;cin>>n;
 	vi a(n); loop cin>>a[i];
-	loop {
-		
+	if(n%2) no;
+	sortall(a);
+	vi b(n) ;
+	lop(i,n/2) {
+		b[i*2+1] = a[i+n/2];
+		b[i*2] = a[i];
 	}
+	bool flag = 1;
+	for(int i= 1;i<n-1;i++){ 
+		if((b[i]>b[i+1] and b[i]>b[i-1])or( b[i]<b[i-1] and b[i]<b[i+1])){}
+		else flag = 0;
+	}
+	if((b[0]>b[1] and b[0]>b[n-1])or( b[0]<b[n-1] and b[0]<b[1])) {}
+	else if((b[n-1]>b[n-2] and b[n-1]>b[0])or( b[n-1]<b[0] and b[n-1]<b[n-2])) {}
+	else flag = 0;
+	yes(flag);
+	if(flag == 0) {
+		return;
+	}
+
+	for(int i= 0;i<n;i++) cout<<b[i]<<" ";
+	cout<<endl;
 }
 
 signed main()

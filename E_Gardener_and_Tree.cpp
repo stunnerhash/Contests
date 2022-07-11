@@ -59,15 +59,15 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
-	vi a(n); loop cin>>a[i];
-	loop {
+	int n, k;
+	cin >> n >> k;
+	vvi g(n, vi());
+	vi rem(n);
+	vi layer(n);
 		
-	}
 }
 
 signed main()

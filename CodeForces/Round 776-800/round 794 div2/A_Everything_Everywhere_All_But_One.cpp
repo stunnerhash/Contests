@@ -59,15 +59,24 @@ template <typename T, typename... V>
 #else
 #define debug(x...)
 #endif
-  
+
+
 void Solve()
 {
-	int n, x;
-	cin>>n>>x;
+	int n;cin>>n;
 	vi a(n); loop cin>>a[i];
-	loop {
-		
+	int sum = 0; loop sum+= a[i];
+	loop{
+		double mean = ((float)sum-a[i])/(float)(n-1);
+		// while(mean>a[i]){
+		// 	mean/=(n-1);
+		// }
+		if(mean == a[i]) {
+			yes(1);
+			return;
+		}
 	}
+	no;
 }
 
 signed main()
