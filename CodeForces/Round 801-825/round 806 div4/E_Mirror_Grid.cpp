@@ -63,7 +63,22 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n;cin>>n;
+	vector<string> a(n);
+	loop cin>>a[i];
+	int ans = 0;
+	loop {
+		lop(k,n){
+			// 0,2 2,n n,n-2 n-2,0
+			int sum = (a[i][k] == '1')+
+						(a[k][n-i-1] == '1')+
+						(a[n-i-1][n-k-1] == '1')+
+						(a[n-k-1][i] == '1');
+
+			ans += min(sum,4-sum);
+		}
+	}
+	cout<<ans/4<<endl;
 }
 
 signed main()
@@ -77,5 +92,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

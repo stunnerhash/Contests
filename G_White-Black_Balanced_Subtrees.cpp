@@ -84,8 +84,8 @@ void DFS(vector<int> adj[], int V)
             DFSUtil(u, adj, visited);
 }
 int dif = 0;
-int solve(vi ad[],int n+1){
-
+int solve(vi ad[],int n){
+	
 }
 void Solve()
 {

@@ -63,7 +63,21 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n;cin>>n;
+	vi a(n); loop cin>>a[i];
+	loop{
+		int k;cin>>k;
+		string s;cin>>s;
+		int x= 0;
+		lop(l,k) {
+			if(s[l]== 'D') x++;
+			else x--;
+		}
+		a[i] = (a[i]+x)%10;
+	}
+	loop if(a[i]<0) a[i]+=10;
+	loop cout<<a[i]<<' ';
+	cout<<endl;
 }
 
 signed main()
@@ -77,5 +91,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

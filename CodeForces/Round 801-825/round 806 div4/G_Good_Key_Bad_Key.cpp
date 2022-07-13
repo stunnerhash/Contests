@@ -60,10 +60,22 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-
+#define int long long 
 void Solve()
 {
-	
+	int n,k;cin>>n>>k;
+	vi a(n); loop cin>>a[i];
+	int sum = 0;
+	int ans = 0;
+	loop{
+		int temp =0;
+		for(int k = 1;i+k<=n and k<32;k++)
+			temp += a[i+k-1]/(1<<k);
+		ans = max(ans,sum+temp);
+		sum += a[i]-k;
+	}
+	ans = max(ans,sum);
+	cout<<ans<<endl;
 }
 
 signed main()
@@ -77,5 +89,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

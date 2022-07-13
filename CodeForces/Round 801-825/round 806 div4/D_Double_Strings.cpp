@@ -63,7 +63,36 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	ll n;
+	cin >> n;
+	map<string, ll> m;
+	vector<string> v;
+	for (int i = 0; i < n; i++)
+	{
+		string s;
+		cin >> s;
+		v.pb(s);
+		m[s]++;
+	}
+
+	vector<int> ans(n, 0);
+	for (ll i = 0; i < n; i++)
+	{
+		string s = v[i];
+		m[s]--;
+		for (ll j = 1; j < s.size(); j++)
+		{
+			string d = s.substr(0, j);
+			string g = s.substr(j, s.size() - j);
+			if (m[d] and m[g])
+				ans[i] = 1;
+		}
+		m[s]++;
+	}
+
+	for (ll i = 0; i < n; i++)
+		cout << ans[i];
+	cout << endl;
 }
 
 signed main()
@@ -77,5 +106,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

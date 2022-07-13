@@ -63,7 +63,10 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	string s; 
+	cin>>s;
+	transform(s.begin(), s.end(), s.begin(), ::toupper);
+	yes(s == "YES") ;
 }
 
 signed main()
@@ -77,5 +80,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

@@ -63,7 +63,19 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n;cin>>n;
+	string s;cin>>s;
+	map<char,int> m;
+	loop {
+		if(m.find(s[i]) == m.end())m[s[i]]+=2;
+		else m[s[i]]++;
+	}
+	debug(s,m);
+	int ans = 0;
+	for(auto i:m){
+		ans+= i.ss;
+	}
+	cout<<ans<<endl;
 }
 
 signed main()
@@ -77,5 +89,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

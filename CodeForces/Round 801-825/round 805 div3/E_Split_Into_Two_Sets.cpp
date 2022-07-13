@@ -48,35 +48,62 @@ void _print() {cerr << "]\n";}
 template <typename T, typename... V>
 void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
 
-// #ifndef ONLINE_JUDGE
+#ifndef ONLINE_JUDGE
 #define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
-// #else
-// #define debug(x...)
-// #endif
+#else
+#define debug(x...)
+#endif
 
 const int  N = 1e5+5;
-#define int long long 
-void Solve()
-{
-	int n;cin>>n;
-	vpi a(n);
-	vl fd[n+10];
-	loop{
-		cin>> a[i].ff>>a[i].ss;
-		fd[a[i].ff].pb(a[i].ss);
-		fd[a[i].ss].pb(a[i].ff);
-	}
-	loop{
-		int na = a[i].ff,nb = a[i].ss;
-		if(na == nb)no
-		else if(fd[na].size()>2 or fd[nb].size()>2)no
-		else 
-		{
 
+bool dfs(int node,vector<short int>&color, vector<vector<int>>&g)
+    {
+        for(auto i:g[node]){
+            if(color[i] == 0){
+                color[i] = -color[node];
+                if(!dfs(i,color,g)) return false;
+            }
+            else if(color[i] == color[node]) return false;
+        }
+        return true;
+    }
+bool isBipartite(vector<vector<int>>& g) {
+	int n = g.size();
+	vector<short int> color(n);
+	for(int i = 0;i<n;i++){
+		if(color[i] == 0){
+			color[i]= 1;
+			if(!dfs(i,color,g)) return false;
 		}
 	}
-	yes(1);
+	return true;
 }
+
+bool solve()
+{
+    int n;
+    cin >> n;
+
+    int ok = true;
+    vector<vector<int>> adj(n);
+
+    for(int i=0,x,y ; i<n ; ++i){
+        cin >> x >> y;
+        x--,y--;
+
+        adj[x].pb(y);
+        adj[y].pb(x);
+
+        if(x==y || adj[x].size()>2 || adj[y].size()>2)
+            ok = false;
+    }
+
+    if(!ok)
+        return false;
+
+    return isBipartite(adj);    
+}
+
 
 signed main()
 {
@@ -86,6 +113,6 @@ signed main()
  int Testcase = 1;
  cin>>Testcase;
 
- while (Testcase--) Solve();
+ while (Testcase--){ yes(solve());}
  return 0;
 }
