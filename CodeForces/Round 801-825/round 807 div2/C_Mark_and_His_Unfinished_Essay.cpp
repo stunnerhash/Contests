@@ -60,31 +60,35 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-
+#define int long long 
 void Solve()
 {
-	int n;cin>>n;
-	vi a(n+1), b(n+1);
-	loop cin >> b[i+1];
-	vector<vpi>seg(n+1);
-	for(int i =1;i<=n;i++){
-		int mi = i/(b[i]+1) +1;
-		int ma = n;
-		if(b[i]) ma = i/b[i];
-		seg[mi].pb({ma,i});
-	}
-	debug(seg);
-	set<pi> run;
-	for(int i =1;i<=n;i++){
-		for(auto x:seg[i]) run.insert(x);
-		
-		debug(run);
-		a[run.begin()->second] = i;
-		run.erase(run.begin());
-	}
-	cerr<<endl;
-	loop cout<<a[i+1]<<' ';cout<<endl;
+	int n,c,q; cin>>n>>c>>q;
+	string s;cin>>s;
+	int tsum = s.size();
+	vl a,b;
+	a.pb(0); b.pb(1);
+	for(int i = 0;i<c;i++){
+		int x,y; cin>>x>>y;
+		a.pb(tsum);b.pb(x);
+		tsum += y-x+1;
+	}	
 
+	for(int i = 0;i<q;i++){
+		int val; cin>>val;
+		while(val>s.size()){
+			int k = 0;
+			for(;k<a.size();k++)
+				if(a[k]>= val) break;
+
+			int temp = val - a[k-1] + b[k-1] -1; 
+			if(temp>=val) break;
+			val = temp;
+		}
+		cout<<s[val-1]<<endl;
+	}
+	// debug(a);
+	// debug(b);
 }
 
 signed main()

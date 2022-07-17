@@ -1,5 +1,10 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
+using namespace __gnu_pbds;
+#define oset tree<int, null_type,less_equal<int>, rb_tree_tag,tree_order_statistics_node_update>
+// oset.insert, oset.find_by_order, oset.order_of_key(4) outputs count of elements strictly less than 4
 
 #define loop           	for (int i = 0; i < n; i++)
 #define lop(i, n)      	for (int i = 0; i < n; i++)
@@ -60,31 +65,18 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-
+#define int long long 
 void Solve()
 {
-	int n;cin>>n;
-	vi a(n+1), b(n+1);
-	loop cin >> b[i+1];
-	vector<vpi>seg(n+1);
-	for(int i =1;i<=n;i++){
-		int mi = i/(b[i]+1) +1;
-		int ma = n;
-		if(b[i]) ma = i/b[i];
-		seg[mi].pb({ma,i});
-	}
-	debug(seg);
-	set<pi> run;
-	for(int i =1;i<=n;i++){
-		for(auto x:seg[i]) run.insert(x);
-		
-		debug(run);
-		a[run.begin()->second] = i;
-		run.erase(run.begin());
-	}
-	cerr<<endl;
-	loop cout<<a[i+1]<<' ';cout<<endl;
-
+	int n, q, temp = 0; cin >> n >> q;
+	vl a(n), ans(n,1); loop cin>>a[i];
+	
+	for(int i = n-1;i>=0;i--)
+		if(temp <a[i]) {
+			ans[i] = temp<q;
+			temp+= temp<q;
+		}
+	loop cout<<ans[i]; cout<<endl;
 }
 
 signed main()

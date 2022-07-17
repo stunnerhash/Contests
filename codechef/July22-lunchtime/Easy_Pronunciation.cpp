@@ -63,28 +63,22 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	int n;cin>>n;
-	vi a(n+1), b(n+1);
-	loop cin >> b[i+1];
-	vector<vpi>seg(n+1);
-	for(int i =1;i<=n;i++){
-		int mi = i/(b[i]+1) +1;
-		int ma = n;
-		if(b[i]) ma = i/b[i];
-		seg[mi].pb({ma,i});
+	int n; cin>>n;
+	string s; cin>>s;
+	vector<char> a{'a','e','i','o','u'};
+	vector<int> aa(n);
+	loop {
+		bool flag = 1;
+		for(int k = 0;k<5;k++) if(s[i] == a[k]) flag = 0;
+		aa[i] = flag;
 	}
-	debug(seg);
-	set<pi> run;
-	for(int i =1;i<=n;i++){
-		for(auto x:seg[i]) run.insert(x);
-		
-		debug(run);
-		a[run.begin()->second] = i;
-		run.erase(run.begin());
+	int temp = 0;
+	for(int i = 0;i<n;i++){
+		temp+= aa[i];
+		if(temp ==4) no
+		if(aa[i] == 0) temp = 0;	
 	}
-	cerr<<endl;
-	loop cout<<a[i+1]<<' ';cout<<endl;
-
+	yes(1);
 }
 
 signed main()

@@ -60,31 +60,21 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-
+#define int long long 
 void Solve()
 {
-	int n;cin>>n;
-	vi a(n+1), b(n+1);
-	loop cin >> b[i+1];
-	vector<vpi>seg(n+1);
-	for(int i =1;i<=n;i++){
-		int mi = i/(b[i]+1) +1;
-		int ma = n;
-		if(b[i]) ma = i/b[i];
-		seg[mi].pb({ma,i});
+	int n; cin>>n;
+	vl a(n); loop cin>>a[i];
+	int sum = 0, cnt = 0;
+	int ans = 0;
+	int i =0;
+	while(i<n-1 and a[i] == 0) i++;
+	for(;i<n-1;i++){
+		sum+= a[i];
+		if(a[i] == 0) ans++;	
 	}
-	debug(seg);
-	set<pi> run;
-	for(int i =1;i<=n;i++){
-		for(auto x:seg[i]) run.insert(x);
-		
-		debug(run);
-		a[run.begin()->second] = i;
-		run.erase(run.begin());
-	}
-	cerr<<endl;
-	loop cout<<a[i+1]<<' ';cout<<endl;
-
+	debug(ans,sum);
+	cout<<ans + sum<<endl;
 }
 
 signed main()
