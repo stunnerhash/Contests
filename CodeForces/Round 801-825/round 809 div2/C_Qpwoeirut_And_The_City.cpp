@@ -63,7 +63,42 @@ template <typename T, typename... V>
 #define int long long
 void Solve()
 {
-	
+	int n;cin>>n;
+	vi a(n); loop cin>>a[i];
+	if(n%2){
+		int ans = 0;
+		for(int i = 1;i<n;i+=2){
+			int mx = max(a[i+1],a[i-1]);
+			ans += max(0LL, mx-a[i]+1);
+		}
+		cout<<ans<<endl;
+		return;
+	}
+	vector<int> pre;
+	vector<int> suf;
+	for(int i = 1;i<n-1;i+=2){
+		int mx = max(a[i+1],a[i-1]);
+		pre.pb(max(0LL, mx-a[i]+1));
+	}
+	for(int i = 2;i<n;i+=2){
+		int mx = max(a[i+1],a[i-1]);
+		suf.pb(max(0LL, mx-a[i]+1));
+	}
+	int nn = pre.size();
+	for(int i = 1;i<nn;i++)
+		pre[i] = pre[i] +pre[i-1];
+	for(int i = nn-2;i>=0;i--) 
+		suf[i] = suf[i+1]+suf[i];
+
+	int ans = 1e18;
+	for(int i = 0;i<nn-1;i++){
+		int x = pre[i]+suf[i+1];
+		ans = min(ans,x);
+		debug(pre[i],suf[i+1]);
+	}
+	ans = min({ans,pre[nn-1],suf[0]});
+	debug(pre,suf);
+	cout<<ans<<endl;
 }
 
 signed main()

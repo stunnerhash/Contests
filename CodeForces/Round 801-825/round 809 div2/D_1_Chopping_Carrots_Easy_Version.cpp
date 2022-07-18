@@ -60,10 +60,24 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
+
+
 #define int long long
 void Solve()
 {
-	
+	int n,k; cin>>n>>k;
+	vector<int>a(n);loop cin>>a[i];
+	int ans = 1e18;
+	for (int x = 1; x <= a[0]; x++) {
+		int cm = x;
+		for (int i = 0; i < n; i++) {
+			int p = min(k, a[i] / x);
+			cm = max(cm, a[i] / p);
+		}
+		ans = min(ans, cm - x);
+	}
+
+	cout<<ans<<endl;
 }
 
 signed main()
