@@ -41,7 +41,8 @@
 		"unordered_map": "cpp",
 		"unordered_set": "cpp",
 		"numeric": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"regex": "cpp"
 	},
     "maven.view": "flat",
     "C_Cpp.dimInactiveRegions": false

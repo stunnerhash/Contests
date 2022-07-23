@@ -58,7 +58,23 @@ const int  N = 1e5+5;
 
 void Solve()
 {
-	
+	vector<int> a;
+	vector<string> words{"add","boook","break"};
+	for(auto word: words){
+		int cnt = 1;
+		int ans = 0;
+		for(int i = 1;i<=word.size();i++){
+			if(i<word.size() and word[i] == word[i-1]) cnt++;
+			else{
+				debug(word,cnt,i);
+				ans += cnt/2;
+				cnt = 1;
+			}
+		}
+		ans += cnt/2;
+		a.push_back(ans);
+	}
+	debug(a);
 }
 
 signed main()
