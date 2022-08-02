@@ -5,14 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,10 +60,37 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
+vi a[100005];
+vi vis;
+void dfs(int x){
+	vis[x] = 1;
+	for(auto i:a[x]){
+		if(!vis[i]) dfs(i);
+	}	
+}
 void Solve()
 {
-	
+	int n, m; cin>>n>>m;
+	vis.clear(); 
+	vis.resize(n+1);
+	for (auto& i : a) i.clear();
+
+	lop(i,m) {
+		int x, y; cin>>x>>y;
+		a[x].pb(y);
+		a[y].pb(x);
+	}
+	vpi ans;
+	for(int i =1;i<=n;i++){
+		if(!vis[i]) {
+			dfs(i);
+			if(i ==1) continue;
+			ans.pb({1,i});
+		}
+	}
+	cout<<ans.size()<<endl;
+	for(auto i:ans) cout<<i.ff<<' '<<i.ss<<endl;
+
 }
 
 signed main()
@@ -72,7 +99,6 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
 
 	while (Testcase--) Solve();
 	return 0;

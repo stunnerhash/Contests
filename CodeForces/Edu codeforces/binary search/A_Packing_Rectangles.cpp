@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -61,9 +62,24 @@ template <typename T, typename... V>
 
 #define int long long
 
+int blackbox(int n,int a,int b,int ans){
+	int x = ans/a;
+	int y = ans/b;
+	return x*y >= n ;
+}
 void Solve()
 {
-	
+	int a,b; cin>>a>>b;
+	int n; cin>>n;
+	int l = 1, r =1;
+	while (!(blackbox(n, a, b, r))) r *= 2;
+	debug(r);
+	while(l<r){
+		int mid = (l+r)/2;
+		if(blackbox(n,a,b,mid)) r= mid;
+		else l = mid+1;
+	}
+	cout<<l<<endl;
 }
 
 signed main()
@@ -71,11 +87,9 @@ signed main()
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+	Solve();
 	return 0;
+	int Testcase = 1;
 }
 
 //by stunnerhash

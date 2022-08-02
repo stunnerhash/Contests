@@ -5,14 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,10 +60,38 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
+vi vis;
+bool bipartate(vi a[], int root, int color){
+	vis[root] = color;
+	for(auto i:a[root]){
+		int newcolor = (color%2)+1;
+		if(vis[i] == 0){
+			if(!bipartate(a,i,newcolor)) return false;
+		}
+		else if(vis[i] == color) return false;
+	}
+	return true;
+}
 void Solve()
 {
-	
+	int n; cin>>n;
+	int m; cin>>m;
+	vi a[n+1];
+	vis.clear();
+	vis.resize(n+1);
+	lop(i,m){
+		int x,y; cin>>x>>y;
+		a[x].pb(y);
+		a[y].pb(x);
+	}
+	for(int i =0;i<=n;i++){
+		if(!vis[i]) 
+			if(!bipartate(a,i,1)) {
+				cout<<"IMPOSSIBLE"<<endl;
+				return;
+			}
+	}
+	loop cout<<vis[i+1]<<' ';
 }
 
 signed main()
@@ -72,7 +100,6 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
 
 	while (Testcase--) Solve();
 	return 0;

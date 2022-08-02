@@ -63,7 +63,18 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n; cin>>n;
+	vi a(n);  loop cin>>a[i];
+	reverse(all(a));
+	map<int,int> m;
+	loop {
+		if(m.find(a[i]) != m.end()){
+			cout<<n-i<<endl;
+			return;
+		}
+		m[a[i]]++;
+	}
+	cout<<0<<endl;
 }
 
 signed main()

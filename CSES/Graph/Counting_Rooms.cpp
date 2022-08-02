@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,21 +61,37 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
+vvi vis(1002,vi(1002));
+int n, m; 
+void dfs(int i, int k){
+	vis[i][k] = 1;
+	
+	if(i-1>=0 and vis[i-1][k] == 0) dfs(i-1,k);
+	if(i+1<n and vis[i+1][k] == 0) dfs(i+1,k);
+	if(k-1>= 0 and vis[i][k-1] == 0) dfs(i,k-1);
+	if(k+1<m and vis[i][k+1] == 0) dfs(i,k+1);
+}
 void Solve()
 {
-	
+	cin>>n>>m;
+	vector<string> s(n);
+	loop cin>>s[i];
+	loop lop(k,m) vis[i][k] = s[i][k] == '#';
+	int cnt = 0;
+	loop lop(k,m) {
+		if(!vis[i][k]){ 
+			cnt++;
+			dfs(i,k);
+		}
+	}
+	cout<<cnt<<endl;
 }
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+	Solve();
 	return 0;
 }
 

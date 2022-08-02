@@ -55,47 +55,27 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #endif
 
 const int  N = 1e5+5;
-int solve()
-{
-	int n,l,r; cin>>n>>l>>r;
-    vector<vector<int>> dp(n, vector<int>(r-l+1, 0));
-    int ans = 0;
-    for (int i = 0; i < n; i++) dp[i][0] = 1;
-    for (int i = 1; i < dp[0].size(); i++) 
-        dp[0][i] = dp[0][i - 1] + 1;
-
-    ans = dp[0][r - l];
-    for (int i = 1; i < n; i++) {
-        for (int j = 1; j < dp[0].size(); j++) 
-            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-        ans += dp[i][r - l];
-    }
-    return ans;
-}
 
 void Solve()
 {
-	
-	// int n; cin>>n;
-	// vector<int> a(n); for(int i =0;i<n;i++) cin>>a[i];
-	// vector<int> suf(n);
-	// suf[n-1] = a[n-1];
-	// for(int i = n-2;i>=0;i--) suf[i] = max(suf[i+1],a[i]);
-	// int ans = 0;
-	// for(int i = 0;i<n;i++) ans = max(ans,suf[i] - a[i]);
-	// cout<<ans<<endl;
-}
+	int a,b,c,d; cin>>a>>b>>c>>d;
+	int n = 4;
+	vi s{a,b,c,d};
+	int cnt = 0; loop cnt+=s[i];
+	if(cnt == 0) cout<<0<<endl;
 
+	else if(cnt == 4) cout<<2<<endl;
+	else cout<<1<<endl;
+}
 
 signed main()
 {
-	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+ ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+ srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
+ int Testcase = 1;
+ cin>>Testcase;
 
-	while (Testcase--) Solve();
-	return 0;
+ while (Testcase--) Solve();
+ return 0;
 }
-
-//by stunnerhash

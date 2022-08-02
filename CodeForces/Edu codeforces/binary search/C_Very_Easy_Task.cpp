@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -25,7 +26,6 @@ typedef vector<vi>     	vvi;
 const ll mod  = 1000000007;
 const ll inf  =	1e9;
 const ll linf =	1e18;
-
 
 void __print(int x)    	        {cerr << x;}
 void __print(long x)   	        {cerr << x;}
@@ -60,21 +60,29 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
+int blackbox(int n, int x, int y, int ans){
+	if (ans < min(x, y)) return false;
+	return ((ans / x) + (ans / y) >= n);
+}
 
 void Solve()
 {
-	
+	int n, x, y; cin >> n >> x >> y;
+	int l = 0, r= n * min(x, y);
+	int ans = min(x,y);
+	while (r> l + 1) {
+		int mid = (l+r) >> 1;
+		if (blackbox(n-1, x, y, mid)) r= mid;
+		else l = mid ;
+	}
+	cout << ans + r<< "\n";
 }
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+    Solve();
 	return 0;
 }
 

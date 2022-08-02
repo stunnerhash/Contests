@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -59,11 +60,31 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-#define int long long
 
 void Solve()
 {
-	
+	int n;cin>>n;
+	vi a(n+1), b(n+1);
+	loop cin >> b[i+1];
+	vector<vpi>seg(n+1);
+	for(int i =1;i<=n;i++){
+		int mi = i/(b[i]+1) +1;
+		int ma = n;
+		if(b[i]) ma = i/b[i];
+		seg[mi].pb({ma,i});
+	}
+	debug(seg);
+	set<pi> run;
+	for(int i =1;i<=n;i++){
+		for(auto x:seg[i]) run.insert(x);
+		
+		debug(run);
+		a[run.begin()->second] = i;
+		run.erase(run.begin());
+	}
+	cerr<<endl;
+	loop cout<<a[i+1]<<' ';cout<<endl;
+
 }
 
 signed main()

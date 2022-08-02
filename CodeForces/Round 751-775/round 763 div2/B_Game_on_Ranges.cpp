@@ -60,10 +60,28 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
+bool comp(const pi x, const pi y){
+	return x.ss-x.ff < y.ss-y.ff;
+}
 void Solve()
 {
-	
+	int n; cin>>n;
+	vpi a(n); loop cin>>a[i].ff>>a[i].ss;
+	bool flag[n+1] = {0};
+	sort(all(a),comp);
+	debug(a);
+	vi ans(n);
+	loop {
+		for(int k = a[i].ff;k<=a[i].ss;k++){
+			if(!flag[k]) {
+				ans[i] = k;
+				flag [k] = 1;
+				break;
+			}
+		}
+	}	
+	loop cout<<a[i].ff<<' '<<a[i].ss<<' '<<ans[i]<<endl;
+	cout<<endl;
 }
 
 signed main()

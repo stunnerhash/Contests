@@ -61,9 +61,56 @@ template <typename T, typename... V>
 
 #define int long long
 
+int countDistinct(int l, int r, string s){
+    set<char> st;
+    for(int i=l ; i<=r ; ++i)
+        st.insert(s[i]);
+    return st.size();
+}
+char one(int x){
+	cout<<'?'<<" 1 "<<x+1<<endl;
+	char ans; cin>>ans;
+	return ans;
+}
+int two(int x, int y ){
+	cout<<'?'<<" 2 "<<x+1<<' '<<y+1<<endl;
+	int ans; cin>>ans;
+	return ans;
+}
 void Solve()
 {
-	
+	int n;cin>>n;	
+	string ans(n,'.');
+	bool found = 0;
+	map<char,int> mp;	
+	lop(i,26) mp[i+'a'] = -1;
+	ans[0] = one(0);
+	mp[ans[0]] = 0;
+
+	int prev = 1;
+	for(int i = 1;i<n;i++){
+		int cur = two(0,i);
+		if(cur != countDistinct(0,i-1,ans)) {
+			ans[i] = one(i);
+			mp[ans[i]] = i;
+			continue;
+		}
+		vector<pair<int,char>> a;
+		for(auto&i :mp) if(i.ss!=-1)a.pb({i.ss,i.ff});
+		int low = 0, high = a.size();
+		while(low<high){
+			int mid = (low+high)/2;
+			if(two(a[mid].first,i) == countDistinct(a[mid].first,i-1,ans)){
+				ans[i] = a[mid].second;
+				low = mid+1;
+			}
+			else high = mid-1;
+		}
+		mp[ans[i]] = i;
+	}
+	debug(ans,mp);
+	cout<<"! "<<ans<<endl;
+	cout.flush();
 }
 
 signed main()
@@ -72,9 +119,7 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+	Solve();
 	return 0;
 }
 

@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,9 +61,29 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
 void Solve()
 {
+	int n;cin>>n;
+	int q; cin>>q;
+	vl a(n); loop cin>>a[i];
+	vl pre(n),suf(n); 
+	for(int i = 1;i<n;i++){
+		pre[i] += max(0ll,a[i-1]-a[i]) + pre[i-1];
+	}
+	for(int i = n-2;i>=0;i--){
+		suf[i] += max(0ll, a[i+1] - a[i]) + suf[i+1];
+	}
+	vi ans;
+	while(q--){
+		int x,y; cin>>x>>y;
+		// debug(x,y);
+		if(x<y){
+			cout<<pre[y-1]-pre[x-1]<<endl;
+		}
+		else{
+			cout<<suf[y-1]- suf[x-1]<<endl;	
+		}
+	}
 	
 }
 
@@ -72,7 +93,7 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
+	// cin>>Testcase;
 
 	while (Testcase--) Solve();
 	return 0;

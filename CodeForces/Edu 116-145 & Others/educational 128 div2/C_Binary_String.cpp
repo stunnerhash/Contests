@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -59,11 +60,32 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-#define int long long
 
+#define int long long
+bool blackbox(vi pos, int ans){
+	int n = pos.size();
+	for(int i = 0;i<=ans;i++){
+		int pre = pos[i];
+		int suf = pos[n-(ans - i +1)];
+		int ones = n-ans; // total ones left
+		int dist = suf-pre;// distance between suffix and prefix
+		if(dist - ones +1<= ans) return true;
+	}
+	return false;
+
+}
 void Solve()
 {
-	
+	string s; cin>>s;
+	int n = s.size();
+	vi pos; loop if(s[i] == '1') pos.pb(i);
+	int l = 0, r = pos.size();
+	while(l<r){
+		int mid = (l+r)/2;
+		if(blackbox(pos,mid)) r = mid;
+		else l = mid+1;
+	}
+	cout<<l<<endl;
 }
 
 signed main()
@@ -77,5 +99,3 @@ signed main()
 	while (Testcase--) Solve();
 	return 0;
 }
-
-//by stunnerhash

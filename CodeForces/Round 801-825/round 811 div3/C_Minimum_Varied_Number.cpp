@@ -61,10 +61,61 @@ template <typename T, typename... V>
 
 #define int long long
 
+void subsetsUtil(vector<int>& A, vector<vector<int> >& res, vector<int>& subset, int index)
+{
+	res.push_back(subset);
+	// Loop to choose from different elements present
+	// after the current index 'index'
+	for (int i = index; i < A.size(); i++) {
+
+		// include the A[i] in subset.
+		subset.push_back(A[i]);
+
+		// move onto the next element.
+		subsetsUtil(A, res, subset, i + 1);
+
+		// exclude the A[i] from subset and triggers
+		// backtracking.
+		subset.pop_back();
+	}
+
+	return;
+}
+
+vector<vector<int> > subsets(vector<int>& A)
+{
+	vector<int> subset;
+	vector<vector<int> > res;
+
+	int index = 0;
+	subsetsUtil(A, res, subset, index);
+
+	return res;
+}
+// Driver Code.
 void Solve()
 {
+	// find the subsets of below vector.
+	vector<int> array = { 0,1, 2, 3,4,5,6,7,8,9 };
+
+	vector<vector<int> > res = subsets(array);
+	vl ans(100,1e18);
+	for (int i = 0; i < res.size(); i++) {
+		int temp = 0;
+		int x = 0;
+		for (int k = 0; k < res[i].size(); k++){
+			x *=10;
+			x += res[i][k];
+			temp += res[i][k];
+		}
+		ans[temp] = min(ans[temp],x);
+	}
+	debug(ans);
 	
+	int n; cin>>n;
+	cout<<aans[n]<<endl;
 }
+
 
 signed main()
 {

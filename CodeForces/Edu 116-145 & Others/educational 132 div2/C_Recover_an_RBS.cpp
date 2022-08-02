@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,10 +61,45 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
 void Solve()
 {
-	
+	string s; cin >> s;
+	int l = s.size();
+	int op = (l / 2), cl = (l / 2);
+
+	for (int i = 0; i < l; i++) {
+		op -= s[i] == '(';
+		cl -= s[i] == ')';
+	}
+
+	if (op == 0 || cl == 0) {
+		cout << "YES"<<endl;
+		return;
+	}
+
+	bool trig = true;
+	for (int i = 0; i < l; i++) {
+		if (s[i] == '?') {
+			if ((op == 1) && trig){
+				s[i] = ')', cl--;
+				trig = false;
+			}
+			else if (op > 0) s[i] = '(',op--;
+			else s[i] = ')',cl--;
+		}
+	}
+	debug(s);
+	int h = 0;
+	for (int i = 0; i < l; i++)
+	{
+		if (s[i] == '(') h++;
+		else h--;
+		if (h < 0) {
+			yes(1);
+			return;
+		}
+	}
+	yes(0);	
 }
 
 signed main()

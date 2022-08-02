@@ -63,7 +63,10 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n,sum; cin>>n>>sum;
+	vi a(n); loop cin>>a[i]; 
+	sum = accumulate(all(a),-sum);
+	cout<<max(0LL,sum)<<endl;	
 }
 
 signed main()

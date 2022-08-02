@@ -60,10 +60,36 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
+bool blackbox(vl a, int ans){
+	int n = a.size();
+	vl temp(n);
+	for(int i = n-1;i>=2;i--){
+		if(a[i]+temp[i] < ans) return false;
+		int d = min(a[i],(a[i] + temp[i] - ans))/3;
+		a[i] -= 3*d;
+		temp[i-1] += d;
+		temp[i-2] += 2*d;
+	}
+	debug(a);
+	debug(temp);
+	if(a[0] + temp[0] <ans or a[1] +temp[1]<ans) return false;
+	return true;
+}
 void Solve()
 {
-	
+	int n; cin>>n;
+	vl h(n); loop cin>>h[i];
+	int l = *min_element(all(h));
+	int  r= 0; loop r+= h[i];
+	r/=n;
+	while(l<r-1){
+		int mid = (l+r)/2;
+		if(blackbox(h,mid)) l = mid;
+		else r = mid-1;
+	}
+	cerr<<endl;
+	if(blackbox(h,l+1)) l++;
+	cout<<l<<endl;
 }
 
 signed main()

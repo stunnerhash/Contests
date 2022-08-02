@@ -5,14 +5,15 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
+#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
+#define yes(x)      	cout<<(x?"YES\n":"NO\n")
 #define no             	{cout<< "NO\n"; return;}
+#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
+#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,10 +61,28 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-
 void Solve()
 {
-	
+	int n , m; cin>>n>>m;
+	vl a(n); loop cin>>a[i];
+	set<pi> st;
+	for(int i = 0;i<m;i++){
+		int x,y;cin>>x>>y;
+		st.insert({x,y});
+	}
+	map<int,int> mp;
+	for(auto i:st){
+		mp[i.ff] ++;
+		mp[i.ss]++;	
+	}
+	if(st.size()%2 == 0) no
+	int ans = INT_MAX;
+	loop if(mp[i+1] %2) ans = min(a[i],ans);
+	for(auto i:st){
+		int x = (mp[i.ff] + mp[i.ss]);
+		if(x%2== 0) ans = min(ans, a[i.ff-1]+ a[i.ss-1]);
+	}
+	cout<<ans<<endl;
 }
 
 signed main()

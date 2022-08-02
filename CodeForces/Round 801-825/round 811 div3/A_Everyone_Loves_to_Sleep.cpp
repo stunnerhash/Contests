@@ -63,7 +63,27 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n; cin>>n;
+	int h,m; cin>>h>>m;
+	int time = h*60 + m;
+	int mi  = 1e5, mx = 1e5;
+	loop {
+		int x,y; cin>>x>>y;
+		int temp = x*60 + y;
+		if(temp>=time) mi= min(mi,temp);
+		mx = min(mx,temp);
+	}	
+	if(mi == 1e5){
+		int ans =  time-mx;
+		// debug(ans);
+		ans = 24*60 - ans;
+		cout<<ans/60<<' '<<ans%60<<endl;
+	}
+	else {
+		int ans = mi-time;
+		// debug(ans);
+		cout<<ans/60<<' '<<ans%60<<endl;
+	}
 }
 
 signed main()

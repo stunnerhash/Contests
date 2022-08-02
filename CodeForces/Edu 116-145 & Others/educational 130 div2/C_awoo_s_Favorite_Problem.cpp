@@ -63,7 +63,18 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n; cin>>n;
+	string a,b;cin>>a>>b;
+	if(count(all(a),'b') != count(all(b),'b')) no
+
+	int k = 0;
+	loop{
+		if(a[i] == 'b') continue;
+		while(b[k] == 'b') k++;
+		if (a[i] != b[k] or (a[i] == 'a' and i > k) or (a[i] == 'c' and i < k)) no
+		k++;
+	}
+	yes
 }
 
 signed main()

@@ -63,7 +63,20 @@ template <typename T, typename... V>
 
 void Solve()
 {
+	int n, q; cin>>n>>q;
+	vl a(n); loop cin>>a[i];
+	sort(all(a));
 	
+	vl pre(n+1); 
+	for(int i = 1;i<=n;i++) pre[i] = pre[i-1]+a[i-1];
+
+	while(q--){
+		int x,y; cin>>x>>y;
+		int i = n-x;
+		int k = i+y;
+		debug(i,k);
+		cout<<(pre[k] - pre[i])<<endl;
+	}
 }
 
 signed main()
@@ -72,7 +85,6 @@ signed main()
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 	int Testcase = 1;
-	cin>>Testcase;
 
 	while (Testcase--) Solve();
 	return 0;

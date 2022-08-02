@@ -63,7 +63,15 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n,m; cin>>n>>m;
+	int xa,ya; cin>>xa>>ya;
+	int xb,yb; cin>>xb>>yb;
+	int x,y;
+	if(xa<=xb) x = xb-xa;
+	else x = 2*(n-xa) + (xa-xb);
+	if(ya<=yb) y= yb-ya;
+	else y = 2*(m-ya) + (ya-yb);
+	cout<<min(x,y)<<endl;
 }
 
 signed main()

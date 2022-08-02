@@ -63,7 +63,45 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	
+	int n; cin>>n;
+	// cout<<n<<' ';
+	vi a(n); loop cin>>a[i];
+	bool five = 0;
+	loop {
+		if(a[i]%5 == 0){
+			five = 1;
+			continue;
+		}
+		while(a[i]%10 != 2){
+			a[i]+= a[i]%10;
+		}
+	}
+	bool flag = 1;
+	if(five){
+		loop if(a[i]%5 != 0){
+			flag = 0;
+		}
+	}
+	debug(a);
+	if(five){
+		if(flag){
+			loop a[i] += a[i]%10;
+			for(int i = 1;i<n;i++) {
+				if(a[i]  != a[i-1]) flag = 0;
+			}
+			yesno(flag);
+		}
+		else no
+		return;
+	}
+
+	flag = 1;
+	loop a[i]/=10;
+	int x = a[0]%2;
+	loop {
+		if(a[i]%2 != x) flag = 0;
+	}
+	yesno(flag);
 }
 
 signed main()
