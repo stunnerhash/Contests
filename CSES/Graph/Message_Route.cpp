@@ -61,20 +61,51 @@ template <typename T, typename... V>
 #endif
 
 #define int long long
-void Solve()
+void solve()
 {
-	
+	int n; cin>>n;
+	vi g[n+1];
+	int m; cin>>m;
+	lop(i,m){
+		int x,y; cin>>x>>y;
+		g[x].pb(y);
+		g[y].pb(x);
+	}	
+	queue<int>q;
+	vi par(n+1);
+	vi vis(n+1,0);
+	q.push(1);
+	vis[1] = 1;
+	bool flag = 0;
+	while(!q.empty()){
+		int top = q.front(); q.pop();
+		for(auto i:g[top]){
+			if(vis[i]) continue;
+			vis[i] = 1;
+			q.push(i);
+			par[i] = top;
+		}
+	}
+	int temp = n;
+	vi ans;
+	while(temp != 0){
+		ans.pb(temp);
+		temp = par[temp];	
+	}
+	reverse(all(ans));
+	if(ans.size() ==1 ) {
+		cout<<"IMPOSSIBLE"<<endl;
+		return;
+	}
+	cout<<ans.size()<<endl;
+	for(auto i:ans) cout<<i<<' ';cout<<endl;
 }
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+	solve();
 	return 0;
 }
 

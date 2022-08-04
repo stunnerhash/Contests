@@ -65,15 +65,16 @@ template <typename T, typename... V>
 int blackbox(int n,int a,int b,int ans){
 	int x = ans/a;
 	int y = ans/b;
-	return x*y >= n ;
+	return x*y >= n;
 }
 void Solve()
 {
 	int a,b; cin>>a>>b;
 	int n; cin>>n;
-	int l = 1, r =1;
+	int r =1;
 	while (!(blackbox(n, a, b, r))) r *= 2;
-	debug(r);
+	int l = max(1ll,r/2);
+
 	while(l<r){
 		int mid = (l+r)/2;
 		if(blackbox(n,a,b,mid)) r= mid;

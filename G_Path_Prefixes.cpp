@@ -61,21 +61,42 @@ template <typename T, typename... V>
 
 #define int long long
 
-void Solve()
-{
-	
+const int maxn=2e5+5;
+vector<int> ch[maxn];
+int a[maxn];
+int b[maxn];
+int ans[maxn];
+vector<int> vb;
+int curb=0;
+int cura=0;
+
+void dfs(int x){
+    curb+=b[x];
+    cura+=a[x];
+    vb.push_back(curb);
+    ans[x]=upper_bound(vb.begin(),vb.end(),cura)-vb.begin();
+    for(int v:ch[x]) dfs(v);
+    curb-=b[x];
+    cura-=a[x];
+    vb.pop_back();
 }
 
-signed main()
-{
-	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
-	return 0;
+int32_t main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);cout.tie(0);
+    int t; cin>>t;
+    while(t--){
+        int n;cin>>n;
+        for(int i=0;i<n;++i) ch[i].clear();
+        for(int i=1;i<n;++i){
+            int pr,a1,b1;
+            cin>>pr>>a[i]>>b[i];
+            ch[pr-1].push_back(i);
+        }
+        dfs(0);
+        for(int i=1;i<n;++i) cout<<ans[i]-1<<' ';
+        cout<<'\n';
+    }
+    return 0;
 }
-
-//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.
+//not by stunnerhash
