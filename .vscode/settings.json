@@ -42,7 +42,8 @@
 		"unordered_set": "cpp",
 		"numeric": "cpp",
 		"iomanip": "cpp",
-		"regex": "cpp"
+		"regex": "cpp",
+		"cstdlib": "cpp"
 	},
     "maven.view": "flat",
     "C_Cpp.dimInactiveRegions": false
