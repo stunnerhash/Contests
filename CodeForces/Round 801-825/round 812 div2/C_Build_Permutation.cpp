@@ -5,15 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n")
+#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
+#define yes				{cout<< "YES\n"; return;}
 #define no             	{cout<< "NO\n"; return;}
-#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
+#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
-#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,53 +59,69 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-bool comp(){
+#define int long long
 
-}
+map<int,int> place;
+// void solve()
+// {
+// 	int n; cin>>n;
 
-void Solve()
+// 	vi a(n);loop a[i] = i;
+// 	bool flag = 0;
+// 	int ans = 0;
+// 	int sq = 1;
+// 	while(sq*sq-n<=n){
+// 		if(place.find(sq*sq-n+1) != place.end()) {
+// 			ans = sq*sq-n+1;
+// 			flag = 1;
+// 		}
+// 		// debug(sq*sq-n+1);
+// 		sq++;
+// 	}
+// 	reverse(a.begin()+ans,a.begin()+n);
+// 	// debug(ans);
+// 	debug(a);
+// 	debug(flag);
+	
+// }
+
+bool isPerfectSquare(long double x)
 {
-	int n,m;cin>>n>>m;
-	vvi a(n,vi(m));
-	loop lop(k,m) cin>>a[i][k];
-	map<pi,int> mp;
-	loop{
-		vi t = a[i];
-		sortall(t);
-		int cnt = 0,x = -1,y = -1;
-		lop(k,m) {
-			if(t[k] != a[i][k]){
-				if(cnt == 0 )  x = k;
-				else if(cnt == 1) y = k; 
-				cnt++;
-			}
-		}
-		// debug(cnt);
-		// debug(a[i]);
-		// debug(t);
-		if(cnt>2) {
-			cout<<-1<<endl; 
-			return;
-		}
-		else if(cnt ==2) mp[{x,y}]++;
-	}
-	if(mp.size()>1) {
-		cout<<-1<<endl; 
+    if (x >= 0) {
+        long long sr = sqrt(x);
+        return (sr * sr == x);
+    }
+    return false;
+}
+void solve(){
+
+	int n; cin>>n;
+	
+	vi a(n);
+	int i = 2;
+	lop(i,n) a[i] = i;
+	swap(a[0],a[1]);
+	if(n == 4){
+		cout<<"0 3 2 1 "<<endl;
 		return;
 	}
-	int x =0, y =0;
-	for(auto it:mp){
-		x = it.ff.ff;
-		y = it.ff.ss;
+	int sq = 2;
+	for(int i = 3;i<=n;i++){
+		int next = (sq+1)*(sq+1) - i;
+		if(a.begin()+next<a.end()) reverse(a.begin()+i,a.begin()+next+1);
+		// debug(i,next);
+		i = next;
+		sq++;
 	}
-	if (mp.size() == 0) x = 0,y = 0;
-
-	bool flag = 1;
-	loop if(a[i][x] < a[i][y] ) flag = 0;
-	
-	if(flag) cout<<x+1<<" "<<y+1<<endl;
-	else cout<<-1<<endl;
-
+	debug(a);
+	debug(a[n-1],n-1);
+	if(isPerfectSquare(a[n-1]+n-1)) {
+		lop(i,n) cout<<a[i]<<' ';
+		cout<<endl;
+	}
+	else {
+		cout<<-1<<endl;
+	}
 }
 
 signed main()
@@ -114,9 +129,18 @@ signed main()
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
-
-	while (Testcase--) Solve();
+	int tc = 1;
+	cin>>tc;
+	int sq = 2;
+	for(int i = 3;i<=1e5;i++){
+		int next = (sq+1)*(sq+1) - i;
+		place[i]++;
+		i = next;
+		sq++;
+	}
+	place[0]++;
+	while (tc--) solve();
 	return 0;
 }
+
+//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.

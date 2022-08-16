@@ -63,33 +63,21 @@ template <typename T, typename... V>
 
 void Solve()
 {
-	int n,k; cin>>n>>k;
-	vi a(n);
-    vpi v;
- 
-    for(int i=1;i<=n;i++)
-    {
-        cin>>a[i];
-        v.pb(mp(a[i]-n+i,i));
+	int n, k; cin >> n >> k;
+	vi a(n); 
+	long long ans = 0;
+	loop{
+        cin >> a[i];
+        ans += a[i];
+        a[i] += i + 1;
     }
-
-    sort(all(v),greater<>());
-
-    vector<pair<int,int> > vp;
-    for(int i=k;i<v.size();i++) {
-		int idx = v[i].second;
-		vp.pb(mp(idx,a[idx]));
+    sort(all(a),greater<int>());
+    lop(i,k) ans -= a[i];
+    lop(i,k){
+        ans += n;
+        ans -= i;
     }
-	
-    int ans=0;
-    for(int i=0;i<vp.size();i++)
-    {
-        int idx=vp[i].first;
-        int val=vp[i].second;
-        ans+=idx+val-i-1;
-    }
-    cout<<ans<<endl;
-
+	cout << ans << endl;
 }
 
 signed main()

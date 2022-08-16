@@ -5,15 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n")
+#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
+#define yes				{cout<< "YES\n"; return;}
 #define no             	{cout<< "NO\n"; return;}
-#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
+#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
-#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,53 +59,83 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-bool comp(){
+#define int long long
 
-}
+// const int N = 2e6;
+// int n;
+// int a[N],b[N];
+ 
+// bool blackbox(int m,int k){
+//     int cnt = 0;
+//     for(int i = 1; i <= n; i++){
+//         a[i] = b[i];
+//         if(2 * a[i] < m){
+//             a[i] = inf;
+//             cnt++;
+//         }
+//     }
+//     if(cnt > k)
+//         return false;
+//     k -= cnt;
+//     if(k >= 2)
+//         return true;
+//     for(int i = 1; i + 1 <= n; i++){
+//         if(a[i] >= m && a[i+1] >= m)
+//             return true;
+//     }
+//     if(k == 0)
+//         return false;
+//     for(int i = 1; i <= n; i++){
+//         if(a[i] >= m)
+//             return true;
+//     }
+//     return false;
+// }
+ 
+// void solve(){
+//     int k;
+//     cin >> n >> k;
+ 
+//     vector<pair<int,int>> v;
+//     for(int i = 1; i <= n; i++){
+//         cin >> a[i];
+//         b[i] = a[i];
+//     }
+ 
+//     int ans = 0;
+//     int l = 0, r = inf+1;
+//     while(r - l > 1){
+//         int m = (l+r)>>1;
+//         if(blackbox(m,k)) l = m;
+//         else r = m;
+//     }
+ 
+//     cout << l << "\n";
+//     return;
+// }
 
-void Solve()
+void solve()
 {
-	int n,m;cin>>n>>m;
-	vvi a(n,vi(m));
-	loop lop(k,m) cin>>a[i][k];
-	map<pi,int> mp;
-	loop{
-		vi t = a[i];
-		sortall(t);
-		int cnt = 0,x = -1,y = -1;
-		lop(k,m) {
-			if(t[k] != a[i][k]){
-				if(cnt == 0 )  x = k;
-				else if(cnt == 1) y = k; 
-				cnt++;
-			}
-		}
-		// debug(cnt);
-		// debug(a[i]);
-		// debug(t);
-		if(cnt>2) {
-			cout<<-1<<endl; 
-			return;
-		}
-		else if(cnt ==2) mp[{x,y}]++;
+	int n; cin>>n;
+	int k; cin>>k;
+	vl a(n), b(n);
+	loop {
+		cin >> a[i];
+		b[i] = a[i];
 	}
-	if(mp.size()>1) {
-		cout<<-1<<endl; 
-		return;
-	}
-	int x =0, y =0;
-	for(auto it:mp){
-		x = it.ff.ff;
-		y = it.ff.ss;
-	}
-	if (mp.size() == 0) x = 0,y = 0;
+	sortall(b);
 
-	bool flag = 1;
-	loop if(a[i][x] < a[i][y] ) flag = 0;
+	map<int,int> m;
+	lop(i,k) m[b[i]]++;
+	loop if (m[a[i]]) {
+		m[a[i]]--;
+		a[i] = 1e9;
+	}
+	int ans = -1;
+	lop(i,n-1) ans = max(ans,min(a[i],a[i+1]));
+	int mini = *min_element(all(a));
 	
-	if(flag) cout<<x+1<<" "<<y+1<<endl;
-	else cout<<-1<<endl;
-
+	cout<<min(2*mini,ans)<<endl;
 }
 
 signed main()
@@ -114,9 +143,11 @@ signed main()
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
+	int tc = 1;
+	cin>>tc;
 
-	while (Testcase--) Solve();
+	while (tc--) solve();
 	return 0;
 }
+
+//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.
