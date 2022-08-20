@@ -5,15 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n")
+#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
+#define yes				{cout<< "YES\n"; return;}
 #define no             	{cout<< "NO\n"; return;}
-#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
+#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
-#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,14 +59,25 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
-void Solve()
-{
-	int n, k;
-	cin >> n >> k;
-	vvi g(n, vi());
-	vi rem(n);
-	vi layer(n);
-		
+#define int long long
+
+void solve(){
+	int n,k; cin>>n>>k;
+	if(k&1){
+		cout<<"Yes"<<endl;
+		for(int i=1;i<=n/2;i++)cout<<i+i-1<<" "<<i+i<<endl;
+		return;
+	}
+	else if(k%4==0){
+		cout<<"No"<<endl;
+		return;
+	}
+	cout<<"Yes"<<endl;
+	for(int i=1;i<=n/2;i++){
+		if(i&1)cout<<i+i<<" "<<i+i-1<<endl;
+		else cout<<i+i-1<<" "<<i+i<<endl;
+	} 
+
 }
 
 signed main()
@@ -75,9 +85,11 @@ signed main()
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
+	int tc = 1;
+	cin>>tc;
 
-	while (Testcase--) Solve();
+	while (tc--) solve();
 	return 0;
 }
+
+//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.
