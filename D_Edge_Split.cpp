@@ -5,15 +5,14 @@ using namespace std;
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
 #define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define dbg(x)         	{cout<<#x<<"="<<x<<endl;cerr<<#x<<"="<<x<<endl;}
-#define yes(x)      	cout<<(x?"YES\n":"NO\n")
+#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
+#define yes				{cout<< "YES\n"; return;}
 #define no             	{cout<< "NO\n"; return;}
-#define clear(x)       	memset (x, 0, sizeof(x))
 #define all(x)         	x.begin(), x.end()
+#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
-#define mp             	make_pair
 #define ss             	second
 #define ff             	first
 #define endl           	"\n"
@@ -60,43 +59,11 @@ template <typename T, typename... V>
 #define debug(x...)
 #endif
 
+#define int long long
 
-void addEdge(vector<int> adj[], int u, int v)
+void solve()
 {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
-}
- 
-void DFSUtil(int u, vector<int> adj[], vector<bool> &visited)
-{
-    visited[u] = true;
-    cout << u << " ";
-    for (int i=0; i<adj[u].size(); i++)
-        if (visited[adj[u][i]] == false)
-            DFSUtil(adj[u][i], adj, visited);
-}
- 
-void DFS(vector<int> adj[], int V)
-{
-    vector<bool> visited(V, false);
-    for (int u=0; u<V; u++)
-        if (visited[u] == false)
-            DFSUtil(u, adj, visited);
-}
-int dif = 0;
-int solve(vi ad[],int n){
-	
-}
-void Solve()
-{
-	int n; cin>>n;
-	vector<int> ad[n+1];
-	for(int i = 2;i<=n;i++){
-		int x; cin>>x;
-		addEdge(ad,i,x);
-	}
-	string s; cin>>s;
-	cout<<solve(ad,n+1)<<endl;
+		
 }
 
 signed main()
@@ -104,9 +71,11 @@ signed main()
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	int Testcase = 1;
-	cin>>Testcase;
+	int tc = 1;
+	cin>>tc;
 
-	while (Testcase--) Solve();
+	while (tc--) solve();
 	return 0;
 }
+
+//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.
