@@ -3,19 +3,19 @@ using namespace std;
 
 #define loop           	for (int i = 0; i < n; i++)
 #define lop(i, n)      	for (int i = 0; i < n; i++)
-#define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
-#define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
-#define no             	{cout<< "NO\n"; return;}
+#define lp(i, x, n)    	for (int i = x; i < n; i++)
+#define pool		    for (int i = n-1; i >=0; i--)
+#define return(x)  		{cout<<x<<'\n'; return;}
+#define yes				return("YES")
+#define no             	return("NO")
+#define yesno(x)      	cout<<(x?"YES":"NO")<<'\n'
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
 #define ss             	second
 #define ff             	first
-#define endl           	"\n"
+#define endl           	'\n'
 typedef pair<int, int> 	pi;
 typedef pair<ll, ll>   	pl;
 typedef vector<int>    	vi;
@@ -63,7 +63,7 @@ template <typename T, typename... V>
 
 void solve()
 {
-		
+	
 }
 
 signed main()
