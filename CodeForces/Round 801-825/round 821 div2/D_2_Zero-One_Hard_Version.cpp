@@ -8,6 +8,7 @@ using namespace std;
 #define yesno(x)      	cout<<(x?"YES\n":"NO\n")
 #define yes				{cout<< "YES\n"; return;}
 #define no             	{cout<< "NO\n"; return;}
+#define return(x)       {cout<<x<<'\n';return;}
 #define all(x)         	x.begin(), x.end()
 #define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
@@ -78,30 +79,23 @@ void solve()
 			for(int i = 0;i<n-1;i++)
 				if(ar[i] == ar[i+1] and ar[i] == 1) ok = 1;
 
-			if(ok) cout<<min(x,2*y)<<endl;
-			else cout<<y<<endl;
-			return;
+			if(ok) return(min(x,2*y));
+			return (y);
 		}
-		cout<<(sum/2)*y<<endl;
-		return;
+		return(y*sum/2);
 	}
-	if(y<=2*x){
-		vector<int>t;
-		int temp = 0;
-		lop(i,n+1) {
-			if(ar[i] == 0 or i == n) {
-				t.pb(temp);
-				temp = 0;
-			}
-			else temp += ar[i];
-		}
-		int sum = 0; loop sum += ar[i];
-		sum = sum/2;
-		int cnt = 0;
-		for(auto i:t) cnt += i/2;
-		cout<<cnt*x + (sum-cnt)*y<<endl;
-		return;
+
+	vl dif,f(5005);
+	loop if(a[i]!=b[i]) dif.pb(i);
+	if(dif.size() == 0) return(0);
+	
+	f[0] = f[1] = 0;
+	for(int i=2;i<=dif.size();i++) {
+		f[i] = f[i - 2] + min(x * (dif[i - 1] - dif[i - 2]), y);
+		if (i % 2 == 0) f[i] = min(f[i], f[i - 1] + y);
+		else f[i] = min(f[i], f[i - 1]);
 	}
+	cout<<f[dif.size()]<<endl;
 }
 
 signed main()
