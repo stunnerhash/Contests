@@ -63,7 +63,35 @@ template <typename T, typename... V>
 
 void solve()
 {
-	int n; cin>>n;	
+	int n,q; cin >> n >> q;
+    vi ans(n,(1ll<<30)-1);
+    vector<vpi> adj(n);    
+ 
+    for(ll i=0 ; i<q ; ++i){
+        ll x,y,w; cin >> x >> y >> w; x--,y--;
+        adj[x].pb({y,w});
+        adj[y].pb({x,w});
+    }
+ 
+    for(ll bit=0 ; bit<30 ; ++bit){
+        for(ll i=0 ; i<n ; ++i){
+            for(auto x : adj[i])
+                if( ((x.ss>>bit)&1ll) == 0 )
+                    ans[i] &= ~(1ll << bit);
+		}
+        // now check for leftover 1's and try to make them 0
+        for(ll i=0 ; i<n ; ++i){
+            bool canbezero = true;
+            if( ((ans[i]>>bit)&1ll))
+                for(auto x : adj[i])
+                    if(x.ff == i or ((ans[x.first]>>bit)&1ll) == 0){
+                        canbezero = false;
+                        break;
+                    }
+            if(canbezero) ans[i] &= ~(1ll << bit);    
+        }
+    }
+	loop cout<<ans[i]<<" \n"[i==n-1];
 }
 
 signed main()
