@@ -3,20 +3,19 @@ using namespace std;
 
 #define loop           	for (int i = 0; i < n; i++)
 #define lop(i, n)      	for (int i = 0; i < n; i++)
-#define lp(i, k, n)    	for (int i=k;k < n?i < n: i>n;k < n? i+=1: i-=1)
-#define trav(a) 		for (auto it = a.begin();  it != a.end();  it++)
-#define yesno(x)      	cout<<(x?"YES\n":"NO\n")
-#define yes				{cout<< "YES\n"; return;}
-#define no             	{cout<< "NO\n"; return;}
-#define return(x)       {cout<<x<<'\n';return;}
+#define lp(i, x, n)    	for (int i = x; i < n; i++)
+#define pool		    for (int i = n-1; i >=0; i--)
+#define return(x)  		{cout<<x<<'\n'; return;}
+#define yes				return("YES")
+#define no             	return("NO")
+#define yesno(x)      	cout<<(x?"YES":"NO")<<'\n'
 #define all(x)         	x.begin(), x.end()
-#define travauto(a)		for (auto& it:a)
 #define sortall(x)    	sort(all(x))
 #define ll             	long long
 #define pb             	push_back
 #define ss             	second
 #define ff             	first
-#define endl           	"\n"
+#define endl           	'\n'
 typedef pair<int, int> 	pi;
 typedef pair<ll, ll>   	pl;
 typedef vector<int>    	vi;
@@ -26,6 +25,7 @@ typedef vector<vi>     	vvi;
 const ll mod  = 1000000007;
 const ll inf  =	1e9;
 const ll linf =	1e18;
+
 
 void __print(int x)    	        {cerr << x;}
 void __print(long x)   	        {cerr << x;}
@@ -61,41 +61,27 @@ template <typename T, typename... V>
 
 #define int long long
 
-void solve()
-{
-	int n,x,y; cin>>n>>x>>y;
-	string a,b; cin>>a>>b;
-	int ca = count(all(a),'0'), cb = count(all(b),'0');
-	if((ca%2) != (cb)%2){
-		cout<<-1<<endl;
+vi a;
+int mx = 0;
+void dfs(int ans,int id, int green,int blue){
+	if(id == a.size()) return;
+	if(ans>a[id]) {
+		dfs(ans+a[id]/2,id+1,green,blue);
+		mx = max(mx,id+1);
 		return;
 	}
-	vl ar(n); loop ar[i] = (a[i]!=b[i]);
-	if(x>=y){
-		int sum = 0; loop sum += ar[i];
-		int ans = 0;
-		if(sum == 2){
-			bool ok = 0;
-			for(int i = 0;i<n-1;i++)
-				if(ar[i] == ar[i+1] and ar[i] == 1) ok = 1;
+	if(green) dfs(ans*2,id,green-1,blue);
+	if(blue)  dfs(ans*3,id,green,blue-1);
+}
 
-			if(ok) return(min(x,2*y));
-			return (y);
-		}
-		return(y*sum/2);
-	}
-
-	vl dif,f(5005);
-	loop if(a[i]!=b[i]) dif.pb(i);
-	if(dif.size() == 0) return(0);
-	
-	f[0] = f[1] = 0;
-	for(int i=2;i<=dif.size();i++) {
-		f[i] = f[i - 2] + min(x * (dif[i - 1] - dif[i - 2]), y);
-		if (i % 2 == 0) f[i] = min(f[i], f[i - 1] + y);
-		else f[i] = min(f[i], f[i - 1]);
-	}
-	cout<<f[dif.size()]<<endl;
+void solve()
+{
+	int n,h; cin>>n>>h;
+	mx = 0; a.resize(n); 
+	loop cin>>a[i]; 
+	sortall(a);
+	dfs(h,0,2,1);
+	cout<<mx<<endl;
 }
 
 signed main()
