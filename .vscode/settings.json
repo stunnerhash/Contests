@@ -43,7 +43,8 @@
 		"numeric": "cpp",
 		"iomanip": "cpp",
 		"regex": "cpp",
-		"cstdlib": "cpp"
+		"cstdlib": "cpp",
+		"system_error": "cpp"
 	},
     "maven.view": "flat",
     "C_Cpp.dimInactiveRegions": false

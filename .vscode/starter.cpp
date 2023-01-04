@@ -4,13 +4,13 @@ using namespace std;
 #define loop           	for (int i = 0; i < n; i++)
 #define lop(i, n)      	for (int i = 0; i < n; i++)
 #define lp(i, x, n)    	for (int i = x; i < n; i++)
-#define pool		    for (int i = n-1; i >=0; i--)
-#define return(x)  		{cout<<x<<'\n'; return;}
-#define yes				return("YES")
-#define no             	return("NO")
-#define yesno(x)      	cout<<(x?"YES":"NO")<<'\n'
+#define pool            for (int i = n-1; i >=0; i--)
+#define returnn(x)      {cout<<x<<'\n'; return;}
+#define yes             returnn("YES")
+#define no              returnn("NO")
+#define yesno(x)        cout<<(x?"YES":"NO")<<'\n'
 #define all(x)         	x.begin(), x.end()
-#define sortall(x)    	sort(all(x))
+#define sortall(x)      sort(all(x))
 #define ll             	long long
 #define pb             	push_back
 #define ss             	second
@@ -26,7 +26,6 @@ const ll mod  = 1000000007;
 const ll inf  =	1e9;
 const ll linf =	1e18;
 
-
 void __print(int x)    	        {cerr << x;}
 void __print(long x)   	        {cerr << x;}
 void __print(float x)  	        {cerr << x;}
@@ -41,17 +40,9 @@ void __print(const string &x)  	{cerr << '"' << x << '"';}
 void __print(char x)           	{cerr << '\''<< x <<'\'';}
 void __print(bool x)           	{cerr <<(x?"true":"false");}
 
-template<typename T, typename V>
-	void __print(const pair<T, V> &x)
-		{cerr << '{'; __print(x.first);cerr<<',';__print(x.second);cerr<<'}';}
-template<typename T>
-	void __print(const T &x) 
-		{int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
-	void _print()
-		{cerr << "]\n";}
-template <typename T, typename... V>
-	void _print(T t, V... v)
-		{__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+template<typename T, typename V> void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first);cerr<<',';__print(x.second);cerr<<'}';}
+template<typename T> void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";} void _print() {cerr << "]\n";}
+template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
 
 #ifndef ONLINE_JUDGE
 #define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
@@ -61,9 +52,7 @@ template <typename T, typename... V>
 
 #define int long long
 
-void solve()
-{
-	
+void solve() {
 }
 
 signed main()
@@ -77,5 +66,4 @@ signed main()
 	while (tc--) solve();
 	return 0;
 }
-
-//I, stunnerhash, hereby declare myself as the owner of this piece of shit code.
+// If it works... don't touch it.
