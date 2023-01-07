@@ -1,108 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define loop           	for (int i = 0; i < n; i++)
-#define lop(i, n)      	for (int i = 0; i < n; i++)
-#define lp(i, x, n)    	for (int i = x; i < n; i++)
-#define pool            for (int i = n-1; i >=0; i--)
-#define returnn(x)      {cout<<x<<'\n'; return;}
-#define yes             returnn("YES")
-#define no              returnn("NO")
-#define yesno(x)        cout<<(x?"YES":"NO")<<'\n'
-#define all(x)         	x.begin(), x.end()
-#define sortall(x)      sort(all(x))
-#define ll             	long long
-#define pb             	push_back
-#define ss             	second
-#define ff             	first
-#define endl           	'\n'
-typedef pair<int, int> 	pi;
-typedef pair<ll, ll>   	pl;
-typedef vector<int>    	vi;
-typedef vector<ll>     	vl;
-typedef vector<pi>     	vpi;
-typedef vector<vi>     	vvi;
-const ll mod  = 1000000007;
-const ll inf  =	1e9;
-const ll linf =	1e18;
-
-void __print(int x)    	        {cerr << x;}
-void __print(long x)   	        {cerr << x;}
-void __print(float x)  	        {cerr << x;}
-void __print(double x) 	        {cerr << x;}
-void __print(unsigned x)       	{cerr << x;}
-void __print(long long x)      	{cerr << x;}
-void __print(long double x)    	{cerr << x;}
-void __print(unsigned ll x)    	{cerr << x;}
-void __print(unsigned long x)  	{cerr << x;}
-void __print(const char *x)    	{cerr << '"' << x << '"';}
-void __print(const string &x)  	{cerr << '"' << x << '"';}
-void __print(char x)           	{cerr << '\''<< x <<'\'';}
-void __print(bool x)           	{cerr <<(x?"true":"false");}
-
-template<typename T, typename V> void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first);cerr<<',';__print(x.second);cerr<<'}';}
-template<typename T> void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";} void _print() {cerr << "]\n";}
-template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-
-#ifndef ONLINE_JUDGE
-#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
-#else
-#define debug(x...)
-#endif
-
 #define int long long
-int n,q; vl seg;
-void build(vi &a, int i = 0, int l = 0, int r = (n-1)){
-	if(l == r) seg[i] = a[l];
-	else{
-		int mid = (l+r)/2;
-		build(a,i*2+1, l, mid);
-		build(a,i*2+2, mid+1, r);
-		seg[i] = min(seg[i*2+1],seg[i*2+2]);
-	}
-}
-void update(int id, int val, int l = 0, int r = n-1, int i = 0 ){
-	if(id>r or id<l) return;
-	if(l == r) {
-		if(l == id) seg[i] = val;
+#define loop for (int i = 0; i < n; i++)
+
+const int N = 3e5;
+int a[N], seg[4*N];// 
+int n,q;
+// update 
+void update(int id, int val, int node = 0, int left = 0, int right = n-1){
+	if(id>right or id<left) return;// return; 
+	if(left == right and left == id){
+		seg[node] = val;
 		return;
 	}
-	int mid = (l+r)/2;
-	update(id, val, l, mid, i*2+1);
-	update(id, val, mid+1, r, i*2+2);
-	seg[i] = min(seg[i*2+1],seg[i*2+2]);
+	int mid = (left+right)/2;
+	update(id, val, node*2+1, left, mid );//leftchild node = node*2 +1
+	update(id, val, node*2+2, mid+1,right);//right child 
+	seg[node] = min(seg[node*2+1],seg[node*2+2]);
 }
-int getmin(int L, int R, int l = 0, int r = n-1, int i = 0){
-	if (l>=L and r<=R) return seg[i];
-	if (l>R or r<L) return 1e9;
-	int mid = (l+r)/2;
-	return min(getmin(L,R,l,mid, i*2+1) , getmin(L,R,mid+1,r, i*2+2));
+// query 
+int query(int ql, int qr,int node = 0, int left = 0, int right = n-1){
+	if(left>=ql and right<=qr) return seg[node];
+	if(left>qr or right<ql) return INT_MAX;
+
+	// partial part 
+	int mid = (left+right)/2;
+	return min(query(ql, qr, node * 2 + 1, left, mid) 
+		 , query(ql, qr, node * 2 + 2, mid + 1, right));
 }
-void solve() {
+
+
+signed main() {
 	cin>>n>>q;
-	vi a(n); loop cin>>a[i];
-	seg.resize(4*n,0);
-	build(a);
+	loop cin>>a[i];
+	loop update(i,a[i]); // build the segmentree;
 	while(q--){
 		int type; cin>>type;
 		if(type == 1){
-			int id,val; cin>>id>>val;
-			update(id-1,val);
+			int id, val; cin>>id>>val; id--;
+			update(id,val);
 		}
-		else {
-			int l,r; cin>>l>>r;
-			cout<<getmin(l-1,r-1)<<endl;
+		else{
+			int ql, qr; cin>>ql>>qr; ql--,qr--;
+			cout<<query(ql,qr)<<endl;
 		}
 	}
 }
-
-signed main()
-{
-	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
-
-	int tc = 1;
-	while (tc--) solve();
-	return 0;
-}
-// If it works... don't touch it.

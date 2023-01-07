@@ -54,7 +54,7 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 
 void solve() {
 	int n, q; cin>>n>>q;
-	vi pre(n + 1);
+	vi pre(n + 1);// xor prefix
 	for(int i = 1;i<=n;i++){
 		int x; cin>>x;
 		pre[i] = x^pre[i-1];
