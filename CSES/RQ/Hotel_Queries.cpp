@@ -51,45 +51,50 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #endif
 
 #define int long long
-int n,q; vl seg;
-
-void update(int id, int val, int i = 0, int l = 0, int r = n) {
-	if(id<l or id>r) return;
-	if(l == r){
-		if(id == l) seg[i] += val;
-		return;
+class segtree{
+public:
+	int val, n; vector<int> tree;
+	segtree(int n,vector<int> a){
+		this-> n = n; tree.resize(2* n);
+		loop tree[i+n] = a[i];
+		pool tree[i] = max(tree[i*2],tree[i*2+1]);
 	}
-	int mid = (l+r)/2;
-	update(id, val, 2 * i + 1, l, mid);
-	update(id, val, 2 * i + 2, mid + 1, r);
-	seg[i] = seg[i * 2 + 1] + seg[i * 2 + 2];
-}
-int query(int L, int R, int i = 0, int l = 0, int r = n){
-	if (r < L or l > R) return 0;
-	if (l >= L and r <= R) return seg[i];
-	int mid = (l + r) / 2;
-	return query(L, R, 2 * i + 1, l, mid) + query(L, R, 2 * i + 2, mid + 1, r);
-}
+	void update(int i, int val) {
+		tree[i] -= val; i>>=1;
+		while(i) tree[i] = max(tree[i*2],tree[i*2+1]), i>>=1;
+	}
+	int query(int val, int i = 1){
+		if(tree[1]<val) return 0;
+		while (i < n){
+			if(tree[2*i] < val) i = 2*i + 1;
+            else i = 2*i;
+		}
+		update(i,val);
+		return i-n+1;
+	}
+};
 
-signed main() {
+void solve() {
 	//input
-	cin>>n>>q;
-	vl a(n); loop cin>>a[i];
-	
-	// segment tree
-	seg.resize(4*(n+1),0);
-
-	while(q--){
-		int type; cin>>type;
-		if(type == 1){
-			int left, right, val;cin>>left>>right>>val;
-			update(left-1,val);
-			update(right,-val);
-		}
-		else {
-			int k; cin>>k;
-			cout<<a[k-1]+query(0,k-1)<<endl;
-		}
+	int n,m; cin>>n>>m; 
+	int size = 1<<(64 - __builtin_clz(n));
+	vl a(size); loop cin>>a[i];
+	segtree seg(size,a);
+	//query
+	lop(i, m) {
+		int x; cin >> x;
+		cout << seg.query(x) << ' ';
 	}
+}
+
+signed main()
+{
+	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+
+	int tc = 1;
+
+	while (tc--) solve();
+	return 0;
 }
 // If it works... don't touch it.

@@ -51,45 +51,36 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #endif
 
 #define int long long
-int n,q; vl seg;
 
-void update(int id, int val, int i = 0, int l = 0, int r = n) {
-	if(id<l or id>r) return;
-	if(l == r){
-		if(id == l) seg[i] += val;
-		return;
-	}
-	int mid = (l+r)/2;
-	update(id, val, 2 * i + 1, l, mid);
-	update(id, val, 2 * i + 2, mid + 1, r);
-	seg[i] = seg[i * 2 + 1] + seg[i * 2 + 2];
+void solve() {
+	int a,b; cin>>a>>b;
+	if(a == b) returnn(a);
+
+	bitset<64>n(a),x(b);
+	int id = -1, flag = 1;	
+	for(int i = 0;i<64;i++)
+		if(n[i] == 0 and x[i] == 1) returnn(-1)
+		else if(n[i] == 1 and x[i] == 0) id = i;
+	for(int i = 0;i<=id+1;i++) if (x[i] == 1) returnn(-1)
+	if(n[id+1] == 1 or flag == 0) returnn(-1)
+
+	bitset<64>ans; ans[id+1] = 1;
+	for(int i = id+2;i<64;i++) ans[i] = n[i];
+
+	int res = 0;
+	for (int i = 0; i <64; i++) if (ans[i] == 1) res += (1ll << i);
+	cout<<res<<endl;
 }
-int query(int L, int R, int i = 0, int l = 0, int r = n){
-	if (r < L or l > R) return 0;
-	if (l >= L and r <= R) return seg[i];
-	int mid = (l + r) / 2;
-	return query(L, R, 2 * i + 1, l, mid) + query(L, R, 2 * i + 2, mid + 1, r);
-}
 
-signed main() {
-	//input
-	cin>>n>>q;
-	vl a(n); loop cin>>a[i];
-	
-	// segment tree
-	seg.resize(4*(n+1),0);
+signed main()
+{
+	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-	while(q--){
-		int type; cin>>type;
-		if(type == 1){
-			int left, right, val;cin>>left>>right>>val;
-			update(left-1,val);
-			update(right,-val);
-		}
-		else {
-			int k; cin>>k;
-			cout<<a[k-1]+query(0,k-1)<<endl;
-		}
-	}
+	int tc = 1;
+	cin>>tc;
+
+	while (tc--) solve();
+	return 0;
 }
 // If it works... don't touch it.
