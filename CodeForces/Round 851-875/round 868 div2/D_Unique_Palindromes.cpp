@@ -50,23 +50,14 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #define debug(x...)
 #endif
 
-#define int long long 
-void solve() {
-	int n,s; cin>>n>>s;
-	vector<vl> f(n+1,vl(2)); vl x(n+1),y(n+1);
-	for(int i=1,in; i<=n; i++) {
-		cin>>in;
-		if (i == 1 || i == n) x[i] = y[i] = in;
-		else if (in <= s) x[i] = 0, y[i] = in;
-		else x[i] = s, y[i] = in - s;
-	}
+#define int long long
 
-	f[1][0] = f[1][1] = 0;
-	for (int i = 2; i <= n; i++) {
-		f[i][0] = min(f[i-1][0] + y[i-1] * x[i], f[i-1][1] + x[i-1] * x[i]);
-		f[i][1] = min(f[i-1][0] + y[i-1] * y[i], f[i-1][1] + x[i-1] * y[i]);
-	}
-	cout << f[n][0] << endl;
+void solve() {
+	int n,k; cin>>n>>k;
+	vector<pl> con(k); // condition
+	lop(i,k) cin>>con[i].ff;
+	lop(i,k) cin>>con[i].ss;
+	
 }
 
 signed main()
