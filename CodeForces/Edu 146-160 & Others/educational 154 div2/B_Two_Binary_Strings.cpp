@@ -52,38 +52,16 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 
 #define int long long
 
-void dfs(int node, vvi& g, vi& visited, vi& ans) {
-    	if(cyc) return;
-	visited[node] = 1;
-	for(int i : g[node]) {
-		if(visited[i] == 1) { cyc = 1; return; } 
-        	if(visited[i] == 2) continue;
-		dfs(i,g,visited,ans);
-	}
-    	visited[node] = 2;
-	ans.pb(node);
-}	
- 
-vector<int> topsort(vvi& g) {
-	int n = g.size(); cyc = 0;
-	vector<int> ans;
-	vector<int> visited(n);
-	loop(i,0,n) {
-		if(visited[i]) continue;
-		dfs(i,g,visited,ans);
-	}
-	reverse(ans.begin(),ans.end());
-	return ans;
-}
-
 void solve() {
-    int n,m,k; cin>>n>>m>>k;
-    vi a(n); loop cin>>a[i];
-    vvi g(n); while(m--) {
-        int u,v; cin>>u>>v;
-        g[u-1].pb(v-1);
-    }
-    debug(g);
+    string a,b; cin>>a>>b;
+    int n = a.size();
+    for (int i = 0; i < n - 1; i++)
+        if (a[i] == b[i] and a[i] == '0' and a[i + 1] == b[i + 1] and a[i+1] == '1') yes
+    reverse(all(a));
+    reverse(all(b));
+    for (int i = 0; i < n - 1; i++)
+        if (a[i] == b[i] and a[i] == '1' and a[i + 1] == b[i + 1] and a[i+1] == '0') yes
+    no
 }
 
 signed main()

@@ -52,38 +52,27 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 
 #define int long long
 
-void dfs(int node, vvi& g, vi& visited, vi& ans) {
-    	if(cyc) return;
-	visited[node] = 1;
-	for(int i : g[node]) {
-		if(visited[i] == 1) { cyc = 1; return; } 
-        	if(visited[i] == 2) continue;
-		dfs(i,g,visited,ans);
-	}
-    	visited[node] = 2;
-	ans.pb(node);
-}	
- 
-vector<int> topsort(vvi& g) {
-	int n = g.size(); cyc = 0;
-	vector<int> ans;
-	vector<int> visited(n);
-	loop(i,0,n) {
-		if(visited[i]) continue;
-		dfs(i,g,visited,ans);
-	}
-	reverse(ans.begin(),ans.end());
-	return ans;
-}
-
 void solve() {
-    int n,m,k; cin>>n>>m>>k;
-    vi a(n); loop cin>>a[i];
-    vvi g(n); while(m--) {
-        int u,v; cin>>u>>v;
-        g[u-1].pb(v-1);
+    string s; cin>>s;
+    int n = s.size(),sz = 0;
+    int sorted = 0;
+    vector<int> unsorted;
+    loop {
+        if(s[i] == '+') sz++;
+        else if(s[i] == '-') sz--;
+        else if(s[i] == '1'){
+            if(!unsorted.empty()) no
+            sorted = sz;
+        } 
+        else if(s[i] == '0'){
+            if(sz <= 1) no
+            if(sorted == sz) no
+            unsorted.pb(sz);
+        }
+        sorted = min (sorted,sz);
+        while(!unsorted.empty() and unsorted.back()>sz) unsorted.pop_back();
     }
-    debug(g);
+    yes
 }
 
 signed main()

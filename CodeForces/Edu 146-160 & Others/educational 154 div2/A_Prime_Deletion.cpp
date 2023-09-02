@@ -51,45 +51,38 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #endif
 
 #define int long long
+vector<string> str;
+const int N = 1e6+5;
+bool prime[N];
+void SieveOfEratosthenes(int n)
+{
+    memset(prime, true, sizeof(prime));
+    for (int p = 2; p * p <= n; p++)
+        if (prime[p] == true) 
+            for (int i = p * p; i <= n; i += p)
+                prime[i] = false;
 
-void dfs(int node, vvi& g, vi& visited, vi& ans) {
-    	if(cyc) return;
-	visited[node] = 1;
-	for(int i : g[node]) {
-		if(visited[i] == 1) { cyc = 1; return; } 
-        	if(visited[i] == 2) continue;
-		dfs(i,g,visited,ans);
-	}
-    	visited[node] = 2;
-	ans.pb(node);
-}	
- 
-vector<int> topsort(vvi& g) {
-	int n = g.size(); cyc = 0;
-	vector<int> ans;
-	vector<int> visited(n);
-	loop(i,0,n) {
-		if(visited[i]) continue;
-		dfs(i,g,visited,ans);
-	}
-	reverse(ans.begin(),ans.end());
-	return ans;
+    for(int i = 10;i<=1e6;i++)
+        if(prime[i]) str.pb(to_string(i));
 }
-
 void solve() {
-    int n,m,k; cin>>n>>m>>k;
-    vi a(n); loop cin>>a[i];
-    vvi g(n); while(m--) {
-        int u,v; cin>>u>>v;
-        g[u-1].pb(v-1);
+    string s; cin>>s;
+    lop(id,str.size()){
+        string sb =str[id];
+        int i = 0,k = 0;
+        while(i<s.size() and k<sb.size()){
+            if(s[i] == sb[k]) i++,k++;
+            else i++;
+        }
+        if(k == sb.size()) returnn(sb);
     }
-    debug(g);
 }
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+    SieveOfEratosthenes(1e6);
 
 	int tc = 1;
 	cin>>tc;
