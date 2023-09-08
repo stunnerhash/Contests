@@ -83,7 +83,7 @@ void solve()
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+	
 
 	lp(i,1,1001) lp(j,1,1001) if(__gcd(i,j) == 1) pairs[i].pb(j);
 	int tc = 1; cin>>tc;

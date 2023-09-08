@@ -74,7 +74,7 @@ pi solve() {
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+	
 	cin>>n>>s; reverse(all(s));
 	pi ans = solve();
 	for(int i = ans.first;i<=ans.second;i++) cout<<i<<' ';

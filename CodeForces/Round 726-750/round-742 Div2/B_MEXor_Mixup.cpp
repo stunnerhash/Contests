@@ -79,7 +79,7 @@ void Solve()
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	srand(chrono::high_resolution_clock::now().time_since_epoch().count());
+	
 
 	a[0] = 0; lp(i,1,300005) a[i] = a[i-1]^i;
 
