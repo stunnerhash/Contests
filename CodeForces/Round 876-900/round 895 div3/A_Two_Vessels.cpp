@@ -55,8 +55,8 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 void solve() {
     int a,b,c; cin>>a>>b>>c;
     double x = abs(a-b);
-    double ans = ceil((x/2)/c);
-    cout<<ans<<endl;
+    // double ans = ceil(static_cast<double>(x/2)/c);
+    // cout<<ans<<endl;
 }
 
 signed main()
