@@ -53,44 +53,17 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #define int long long
 
 void solve() {
-    int n; cin>>n;
-    vl a(n+1); loop cin>>a[i+1];
-    int prod = 1; loop prod= min(inf,a[i+1]*prod);
-    if(prod>=2*n){
-        int l = 1,r = n;
-        while(a[l] == 1 and l<r) l++;
-        while(a[r] == 1 and l<r) r--;
-        cout<<l<<' '<<r<<endl;
+    int n,k,a,b; cin>>n>>k>>a>>b; a--,b--;
+    vector<pair<int,int>> arr(n);
+    loop cin>>arr[i].ff>>arr[i].ss;
+    int ans = abs(arr[a].ff-arr[b].ff) + abs(arr[a].ss - arr[b].ss);
+    int amin = 1e12, bmin = 1e12;
+    for(int i = 0;i<k;i++){
+        amin = min(amin,abs(arr[a].ff-arr[i].ff) + abs(arr[a].ss- arr[i].ss));
+        bmin = min(bmin,abs(arr[b].ff-arr[i].ff) + abs(arr[b].ss- arr[i].ss));
     }
-    vector<int> ind, pre(n+1),suf(n+1),product(n+1);
-    product[0] = 1;
-    loop {
-        if (a[i] > 1) ind.pb(i);
-        pre[i + 1] = pre[i] + a[i+1];
-        product[i + 1] = product[i] * a[i+1];
-    }
-    for(int i=n-1; i>= 0; i--) suf[i] = suf[i + 1] + a[i];
-    if(ind.size() == 1) {
-        cout << ind.front() + 1 << " " << ind.front() + 1 << "\n";
-        return ;
-    }
-
-    int l = 0,r = 0;
-    prod = accumulate(all(a),0LL);
-    for(int i = 0; i < ind.size(); i++){
-        for(int k = i + 1; k < ind.size(); k++){
-            int val = product[ind[k] + 1] / product[ind[i]];
-            val += pre[ind[i]];
-            val += suf[ind[k] + 1];
-            if(val > prod){
-                l = ind[i];
-                r = ind[k];
-                prod = val;
-            }
-        }
-    }
- 
-    cout << l + 1 << " " << r + 1 << "\n";
+    ans = min (ans, amin+bmin);
+    cout<<ans<<endl;
 }
 
 signed main()
