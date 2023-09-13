@@ -51,24 +51,36 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #endif
 
 #define int long long
-#include <iostream>
-#include <vector>
-#include <stack>
-
-using namespace std;
 
 void solve() {
-    int n; cin>>n; 
-    vi a(n); loop cin>>a[i];
-    vi c(n); loop cin>>c[i];
-    vvi g(n);
-    loop g[i].pb(a[i]-1);
+    int n, k; cin >> n >> k;
+	vl a(n),vis(n); loop { cin >> a[i]; a[i]--; }
+	if (k == 1) {
+		loop if (a[i] != i) no
+        yes return;
+    }
+    int x = 1, check = true;
+    loop{
+        if (vis[i] == 0) {
+            int node = i,len = 1;
+            while (vis[node] == 0) {
+                vis[node] = x;
+                node = a[node];
+            }
+            if (vis[node] == x) {
+                int nd = a[node];
+                while (nd != node) len++, nd = a[nd];
+                if (len != k) check = false;
+            }
+            x++;
+        }
+    }
+    yesno(check);
 }
 
 signed main()
 {
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-	
 
 	int tc = 1;
 	cin>>tc;
