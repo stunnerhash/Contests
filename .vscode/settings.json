@@ -102,6 +102,6 @@
     "maven.view": "flat",
 	"C_Cpp.dimInactiveRegions": false,
 	"C_Cpp.errorSquiggles": "enabled",
-	"cph.general.saveLocation": "/Users/utkarsh/Code/Contests/.cph",
+	"cph.general.saveLocation": "",
 	"cph.general.onceMaintainerMessage": false
 }
