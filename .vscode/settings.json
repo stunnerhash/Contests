@@ -97,7 +97,15 @@
 		"cerrno": "cpp",
 		"cassert": "cpp",
 		"__memory": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"charconv": "cpp",
+		"any": "cpp",
+		"barrier": "cpp",
+		"coroutine": "cpp",
+		"latch": "cpp",
+		"numbers": "cpp",
+		"semaphore": "cpp",
+		"span": "cpp"
 	},
     "maven.view": "flat",
 	"C_Cpp.dimInactiveRegions": false,

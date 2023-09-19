@@ -53,29 +53,29 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 #define int long long
 
 void solve() {
-    int n, k; cin >> n >> k;
-	vl a(n),vis(n); loop { cin >> a[i]; a[i]--; }
-	if (k == 1) {
-		loop if (a[i] != i) no
-        yes return;
+    int n, mi = 1e9,mx; cin>>n;
+    vl a(n);  loop cin>>a[i];
+    int k; cin>>k;
+    vl pre(n); pool {
+        mi = min(mi, a[i]);
+        pre[i] = mi;
     }
-    int x = 1, check = true;
-    loop{
-        if (vis[i] == 0) {
-            int node = i,len = 1;
-            while (vis[node] == 0) {
-                vis[node] = x;
-                node = a[node];
+    pre.pb(1e9);
+    vi ans(n+1);
+    int prev;
+    loop {
+        if(pre[i]!= pre[i+1]) {
+            if(pre[i] == mi) { mx = k/mi; k%=mi;}
+            else {
+                mx = min(mx, k / (pre[i] - prev));
+                k -= mx*(pre[i]-prev);
             }
-            if (vis[node] == x) {
-                int nd = a[node];
-                while (nd != node) len++, nd = a[nd];
-                if (len != k) check = false;
-            }
-            x++;
+            prev = pre[i];
+            ans[i] = mx;
         }
     }
-    yesno(check);
+    pool ans[i] = max(ans[i],ans[i+1]);
+    loop cout<<ans[i]<<' '; cout<<endl;
 }
 
 signed main()
